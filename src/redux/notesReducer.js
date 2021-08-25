@@ -1,7 +1,7 @@
-import { ADD_NOTE } from '../constants';
+import { ADD_NOTE } from './constants';
 //import { getAllQuestions, pickQuestion } from '../../utilities/questions';
 //import { resetDay, addAnswer } from '../../utilities/stats';
-import { saveItem, loadItem } from '../../utilities/storage';
+import { saveItem, loadItem } from '../utilities/storage';
 
 const notesKey = 'notedNotes';
 
@@ -12,7 +12,7 @@ const defaultState = {
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
-    case ADD_NOTE:
+    case ADD_NOTE: {
       const notes = {};
 
       saveItem(notesKey, notes);
@@ -21,6 +21,7 @@ export default function reducer(state = defaultState, action) {
         ...state,
         notes,
       };
+    }
     default:
       return state;
   }

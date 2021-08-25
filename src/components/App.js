@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+
 //import React, { useEffect } from 'react';
 /*
 import { connect } from 'react-redux';
@@ -10,11 +12,28 @@ import Game from './Game';
 import Header from './Header';
 import Home from './Home';
 import Stats from './Stats';
+
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+  const dis = useDispatch();
+  const isActive = useSelector(state => state.auth.isActive);
 */
 
 function App() {
+  const notes = useSelector(state => state.notes.all);
+  const parent = useSelector(state => state.notes.parent);
+
   return (
-    <div>App</div>
+    <div>
+      App
+      <div>
+        {JSON.stringify(notes, null, 2)}
+      </div>
+      <div>
+        {JSON.stringify(parent, null, 2)}
+      </div>
+    </div>
   );
 }
 

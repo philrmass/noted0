@@ -1,12 +1,13 @@
 import { ADD_NOTE } from './constants';
-//import { getAllQuestions, pickQuestion } from '../../utilities/questions';
+import { getNotesDefault } from '../utilities/notes';
+
 //import { resetDay, addAnswer } from '../../utilities/stats';
 import { saveItem, loadItem } from '../utilities/storage';
 
 const notesKey = 'notedNotes';
 
 const defaultState = {
-  notes: loadItem(notesKey, {}), //??? add default
+  all: loadItem(notesKey, getNotesDefault()),
   parent: null,
 };
 

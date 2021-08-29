@@ -1,0 +1,23 @@
+.button {
+  width: var(--size6);
+  height: var(--size6);
+  border-radius: 50%;
+  background: white;
+  border: 1px solid var(--border);
+  z-index: 100;
+}
+
+.add {
+  position: absolute;
+  bottom: var(--size1);
+  right: var(--size1);
+}
+
+.back {
+}
+
+.menu {
+}
+
+.revert {
+}

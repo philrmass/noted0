@@ -1,26 +1,35 @@
 import { ADD_NOTE } from './constants';
-import { getNotesDefault } from '../utilities/notes';
-
-//import { resetDay, addAnswer } from '../../utilities/stats';
+import { getEmptyNote, getNotesDefault } from '../utilities/notes';
 import { saveItem, loadItem } from '../utilities/storage';
 
 const notesKey = 'notedNotes';
 
 const defaultState = {
   all: loadItem(notesKey, getNotesDefault()),
-  parent: null,
+  parentId: null,
 };
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
     case ADD_NOTE: {
-      const notes = {};
+      //??? finish this
+      const note = getEmptyNote();
+      const parent = state.all[action.parentId];
+      const children = [];
+      const all = {
+        ...state.all,
+        [parent.uuid]: {
+          ...parent,
+          children,
+        },
+        [note.uuid]: note 
+      };
 
-      saveItem(notesKey, notes);
+      saveItem(notesKey, all);
 
       return {
         ...state,
-        notes,
+        all,
       };
     }
     default:

@@ -1,10 +1,12 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { removeNote } from '../redux/notesActions';
 import styles from './Notes.module.css';
 
 import Handle from './Handle';
 
 function Notes() {
+  const dis = useDispatch();
   const allNotes = useSelector(state => state.notes.all);
   const parentId = useSelector(state => state.notes.parentId) ?? 'root';
   const parent = allNotes[parentId];
@@ -22,6 +24,9 @@ function Notes() {
         className={styles.note}
       >
         <div className={styles.buttons}>
+          <button className={styles.button} onClick={() => dis(removeNote(note.uuid, parentId))}>
+            x
+          </button>
         </div>
         <div className={styles.text}>
           {note.text}

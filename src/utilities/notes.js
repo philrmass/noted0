@@ -10,13 +10,13 @@ export function getEmptyNote() {
 }
 
 export function getNotesDefault() {
-  const uuids = Array.from({ length: 6 }, () => uuidv4());
+  const uuids = Array.from({ length: 7 }, () => uuidv4());
   const at = Date.now();
 
   return {
     'root': {
       at,
-      children: [...uuids.slice(0, 4)],
+      children: [...uuids.slice(0, 5)],
       uuid: 'root',
     },
     [uuids[0]]: {
@@ -42,24 +42,31 @@ export function getNotesDefault() {
     },
     [uuids[3]]: {
       at,
-      children: [...uuids.slice(4, 6)],
+      children: [],
       color: '#c0ff80',
-      text: 'The icon on the bottom left of the note shows that it has child notes. Click the note to see them',
+      text: 'Delete the note with the button on the left',
       uuid: uuids[3],
     },
     [uuids[4]]: {
       at,
-      children: [],
+      children: [...uuids.slice(5, 7)],
       color: '#80ff80',
-      text: 'This is a child note of the note shown above',
+      text: 'The icon on the bottom left of the note shows that it has child notes. Click the note to see them',
       uuid: uuids[4],
     },
     [uuids[5]]: {
       at,
       children: [],
       color: '#80ffc0',
-      text: 'Press the back button in the top left to go back to the parent note',
+      text: 'This is a child note of the note shown above',
       uuid: uuids[5],
+    },
+    [uuids[6]]: {
+      at,
+      children: [],
+      color: '#80ffff',
+      text: 'Press the back button in the top left to go back to the parent note',
+      uuid: uuids[6],
     },
   };
 }

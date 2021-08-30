@@ -6,6 +6,28 @@
 }
 
 .buttons {
+  padding: var(--size1);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button {
+  width: var(--size4);
+  height: var(--size4);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--shade);
+}
+
+
+.button:hover {
+  background: var(--shadeLight);
+}
+
+.button:active {
+  background: var(--shadeDark);
 }
 
 .text {
@@ -14,7 +36,7 @@
 }
 
 .handle {
-  width: var(--size5);
+  width: var(--handleWidth);
   height: 100%;
-  background: #0002;
+  background: var(--shade);
 }

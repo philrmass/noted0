@@ -2,9 +2,17 @@
   width: var(--size6);
   height: var(--size6);
   border-radius: 50%;
-  background: white;
+  background: var(--button);
   border: 1px solid var(--border);
   z-index: 100;
+}
+
+.button:hover {
+  filter: brightness(110%);
+}
+
+.button:active {
+  filter: brightness(80%);
 }
 
 .add {

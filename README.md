@@ -8,14 +8,17 @@ Deployed at [https://philrmass.github.io/noted/](https://philrmass.github.io/not
 - `npm install` to install dependencies
 - `npm run start` to start the dev server
 
+###
+- move parentId to redux/ui
+- add removedNote to redux/notes
+
 ### To Do
-- add
-- remove
-- edit
+- overlay, redux ui
+- editor
+- color editor
 - select as parent
 - show children icon
 - drag and drop
-- color editor
 - app icon
 - manifest & icon set
 - PwA and agent
@@ -23,4 +26,3 @@ Deployed at [https://philrmass.github.io/noted/](https://philrmass.github.io/not
 - load data
 - font
 - icons for buttons
-

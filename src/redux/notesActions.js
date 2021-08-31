@@ -1,10 +1,13 @@
+import { v4 as uuidv4 } from 'uuid';
+
 import {
   ADD_NOTE,
   REMOVE_NOTE,
 } from './constants';
 
 export function addNote(parentId) {
-  return { type: ADD_NOTE, parentId };
+  const id = uuidv4();
+  return { type: ADD_NOTE, id, parentId };
 }
 
 export function removeNote(id, parentId) {

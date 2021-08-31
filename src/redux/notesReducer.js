@@ -8,25 +8,25 @@ const parentIdKey = 'notedParent';
 const defaultState = {
   all: loadItem(allKey, getNotesDefault()),
   parentId: loadItem(parentIdKey, 'root'),
+  //removedNote: null
 };
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
     case ADD_NOTE: {
-      const note = getEmptyNote();
+      const note = getEmptyNote(action.id);
       const parent = state.all[action.parentId];
-      const children = [...parent.children, note.uuid];
+      const children = [...parent.children, note.id];
       const all = {
         ...state.all,
-        [parent.uuid]: {
+        [parent.id]: {
           ...parent,
           children,
         },
-        [note.uuid]: note,
+        [note.id]: note,
       };
 
       saveItem(allKey, all);
-
       return {
         ...state,
         all,
@@ -38,12 +38,13 @@ export default function reducer(state = defaultState, action) {
       const removed = removeProperty(action.id, state.all);
       const all = {
         ...removed,
-        [parent.uuid]: {
+        [parent.id]: {
           ...parent,
           children,
         },
       };
 
+      saveItem(allKey, all);
       return {
         ...state,
         all,

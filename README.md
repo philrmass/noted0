@@ -8,14 +8,11 @@ Deployed at [https://philrmass.github.io/noted/](https://philrmass.github.io/not
 - `npm install` to install dependencies
 - `npm run start` to start the dev server
 
-###
-- move parentId to redux/ui
-- add removedNote to redux/notes
-
 ### To Do
-- overlay, redux ui
-- editor
+- add removedParentId, make revert work
+- editor (close)
 - color editor
+- overlay, redux ui
 - select as parent
 - show children icon
 - drag and drop

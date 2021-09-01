@@ -1,8 +1,12 @@
 import { EDIT_NOTE } from './constants';
+import { /*saveItem, */loadItem } from '../utilities/storage';
+
+const parentIdKey = 'notedParent';
 
 const defaultState = {
   editingId: null,
   overlays: [],
+  parentId: loadItem(parentIdKey, 'root'),
 };
 
 export default function reducer(state = defaultState, action) {
@@ -18,6 +22,7 @@ export default function reducer(state = defaultState, action) {
         overlays,
       };
     }
+    //saveItem(allKey, all);
     default:
       return state;
   }

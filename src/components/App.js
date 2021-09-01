@@ -4,15 +4,20 @@ import version from '../version';
 import styles from './App.module.css';
 
 import Controls from './Controls';
+import Editor from './Editor';
 import Notes from './Notes';
 
 function App() {
   const overlays = useSelector(state => state.ui.overlays);
 
   const buildOverlay = () => {
-    console.warn('CTRL', overlays);
+    if (overlays.length > 0) {
+      const top = overlays[overlays.length - 1];
 
-    return <div>{overlays}</div>;
+      if (top === 'editor') {
+        return <Editor />;
+      }
+    }
   };
 
   return (

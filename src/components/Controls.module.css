@@ -28,4 +28,7 @@
 }
 
 .revert {
+  position: absolute;
+  bottom: var(--size1);
+  left: var(--size1);
 }

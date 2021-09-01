@@ -9,7 +9,7 @@ import Handle from './Handle';
 function Notes() {
   const dis = useDispatch();
   const allNotes = useSelector(state => state.notes.all);
-  const parentId = useSelector(state => state.notes.parentId) ?? 'root';
+  const parentId = useSelector(state => state.ui.parentId) ?? 'root';
   const parent = allNotes[parentId];
   const ids = parent.children ?? [];
   const notes = ids.map((id) => allNotes[id]);

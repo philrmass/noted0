@@ -1,5 +1,6 @@
 export const ADD_NOTE = 'ADD_NOTE';
 export const REMOVE_NOTE = 'REMOVE_NOTE';
+export const REVERT_NOTE = 'REVERT_NOTE';
 export const SET_COLOR = 'SET_COLOR';
 export const SET_TEXT = 'SET_TEXT';
 

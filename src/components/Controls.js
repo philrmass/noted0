@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import cln from 'classnames';
 
-import { addNote } from '../redux/notesActions';
+import { addNote, revertNote } from '../redux/notesActions';
 import { editNote } from '../redux/uiActions';
 import styles from './Controls.module.css';
 
 function Controls({ children }) {
   const dis = useDispatch();
-  const parentId = useSelector(state => state.notes.parentId);
+  const parentId = useSelector(state => state.ui.parentId);
+  const removedNote = useSelector(state => state.notes.removedNote);
 
   const add = () => {
     const addAction = addNote(parentId);
@@ -24,6 +25,14 @@ function Controls({ children }) {
       >
         +
       </button>
+      {removedNote &&
+      <button
+        className={cln(styles.button, styles.revert)}
+        onClick={() => dis(revertNote())}
+      >
+        R
+      </button>
+      }
     </>
   );
 }

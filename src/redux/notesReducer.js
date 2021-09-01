@@ -1,14 +1,13 @@
-import { ADD_NOTE, REMOVE_NOTE } from './constants';
+import { ADD_NOTE, REMOVE_NOTE, REVERT_NOTE } from './constants';
 import { getEmptyNote, getNotesDefault } from '../utilities/notes';
 import { saveItem, loadItem } from '../utilities/storage';
 
 const allKey = 'notedNotes';
-const parentIdKey = 'notedParent';
 
 const defaultState = {
   all: loadItem(allKey, getNotesDefault()),
-  parentId: loadItem(parentIdKey, 'root'),
-  //removedNote: null
+  removedNote: null,
+  //??? removedParenId: null,
 };
 
 export default function reducer(state = defaultState, action) {
@@ -30,14 +29,16 @@ export default function reducer(state = defaultState, action) {
       return {
         ...state,
         all,
+        removedNote: null,
       };
     }
     case REMOVE_NOTE: {
       const parent = state.all[action.parentId];
       const children = parent.children.filter(id => id !== action.id);
-      const removed = removeProperty(action.id, state.all);
+      const removedNote = state.all[action.id];
+      const remaining = removeProperty(action.id, state.all);
       const all = {
-        ...removed,
+        ...remaining,
         [parent.id]: {
           ...parent,
           children,
@@ -48,6 +49,20 @@ export default function reducer(state = defaultState, action) {
       return {
         ...state,
         all,
+        removedNote,
+      };
+    }
+    case REVERT_NOTE: {
+      const all = {
+        ...state.all,
+        [state.removedNote.id]: state.removedNote,
+      };
+
+      saveItem(allKey, all);
+      return {
+        ...state,
+        all,
+        removedNote: null,
       };
     }
     default:

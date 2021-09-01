@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   ADD_NOTE,
   REMOVE_NOTE,
+  REVERT_NOTE,
 } from './constants';
 
 export function addNote(parentId) {
@@ -12,4 +13,8 @@ export function addNote(parentId) {
 
 export function removeNote(id, parentId) {
   return { type: REMOVE_NOTE, id, parentId };
+}
+
+export function revertNote() {
+  return { type: REVERT_NOTE };
 }

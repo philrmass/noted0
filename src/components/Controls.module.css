@@ -1,9 +1,10 @@
 .button {
   width: var(--size6);
   height: var(--size6);
+  border: 1px solid var(--border);
   border-radius: 50%;
   background: var(--button);
-  border: 1px solid var(--border);
+  color: var(--textButton);
   z-index: 100;
 }
 

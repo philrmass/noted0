@@ -14,5 +14,7 @@
   --fontSize: 20px;
   --fontSizeSmall: 16px;
 
-  --handleWidth: var(--size5);
+  --radius: 4px;
+
+  --handleWidth: var(--size6);
 }

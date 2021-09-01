@@ -6,11 +6,12 @@
 }
 
 .buttons {
-  padding: var(--size1);
+  width: var(--handleWidth);
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .button {
@@ -20,7 +21,6 @@
   border-radius: 50%;
   background: var(--shade);
 }
-
 
 .button:hover {
   background: var(--shadeLight);

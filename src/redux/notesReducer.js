@@ -1,4 +1,9 @@
-import { ADD_NOTE, REMOVE_NOTE, REVERT_NOTE } from './constants';
+import {
+  ADD_NOTE,
+  REMOVE_NOTE,
+  REVERT_NOTE,
+  UPDATE_NOTE,
+} from './constants';
 import { getEmptyNote, getNotesDefault } from '../utilities/notes';
 import { saveItem, loadItem } from '../utilities/storage';
 
@@ -54,6 +59,21 @@ export default function reducer(state = defaultState, action) {
         all,
         removedNote: null,
         removedParenId: null,
+      };
+    }
+    case UPDATE_NOTE: {
+      const note = {
+        ...state.all[action.id],
+        text: action.text,
+        color: action.color,
+      };
+
+      return {
+        ...state,
+        all: {
+          ...state.all,
+          [note.id]: note,
+        },
       };
     }
     default:

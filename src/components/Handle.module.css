@@ -1,5 +1,5 @@
 .main {
-  width: var(--size5);
+  width: var(--handleWidth);
   height: 100%;
-  background: #0002;
+  background: var(--shadeLight);
 }

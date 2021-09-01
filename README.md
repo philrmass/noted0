@@ -9,17 +9,16 @@ Deployed at [https://philrmass.github.io/noted/](https://philrmass.github.io/not
 - `npm run start` to start the dev server
 
 ### To Do
-- add removedParentId, make revert work
-- editor (close)
+- text area
 - color editor
-- overlay, redux ui
-- select as parent
+- redux ui overlay actions
+- select note as parent
 - show children icon
 - drag and drop
 - app icon
 - manifest & icon set
-- PwA and agent
+- PWA and agent
 - save data
 - load data
-- font
+- better font
 - icons for buttons

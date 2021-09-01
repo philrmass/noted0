@@ -4,8 +4,10 @@ import { /*saveItem, */loadItem } from '../utilities/storage';
 const parentIdKey = 'notedParent';
 
 const defaultState = {
-  editingId: null,
-  overlays: [],
+  editingId: '2fd53d2a-7771-43f7-9b39-479bf4875e84',
+  overlays: ['editor'],
+  //editingId: null,
+  //overlays: [],
   parentId: loadItem(parentIdKey, 'root'),
 };
 

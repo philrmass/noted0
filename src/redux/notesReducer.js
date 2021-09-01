@@ -14,16 +14,7 @@ export default function reducer(state = defaultState, action) {
   switch (action.type) {
     case ADD_NOTE: {
       const note = getEmptyNote(action.id);
-      const parent = state.all[action.parentId];
-      const children = [...parent.children, note.id];
-      const all = {
-        ...state.all,
-        [parent.id]: {
-          ...parent,
-          children,
-        },
-        [note.id]: note,
-      };
+      const all = addNote(state.all, note, action.parentId);
 
       saveItem(allKey, all);
       return {
@@ -55,16 +46,7 @@ export default function reducer(state = defaultState, action) {
       };
     }
     case REVERT_NOTE: {
-      const parent = state.all[state.removedParenId];
-      const children = [...parent.children, state.removedNote.id];
-      const all = {
-        ...state.all,
-        [parent.id]: {
-          ...parent,
-          children,
-        },
-        [state.removedNote.id]: state.removedNote,
-      };
+      const all = addNote(state.all, state.removedNote, state.removedParenId);
 
       saveItem(allKey, all);
       return {
@@ -77,6 +59,20 @@ export default function reducer(state = defaultState, action) {
     default:
       return state;
   }
+}
+
+function addNote(all, note, parentId) {
+  const parent = all[parentId];
+  const children = [...parent.children, note.id];
+
+  return {
+    ...all,
+    [parent.id]: {
+      ...parent,
+      children,
+    },
+    [note.id]: note,
+  };
 }
 
 function removeProperty(key, obj) {

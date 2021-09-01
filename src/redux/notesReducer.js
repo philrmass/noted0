@@ -7,7 +7,7 @@ const allKey = 'notedNotes';
 const defaultState = {
   all: loadItem(allKey, getNotesDefault()),
   removedNote: null,
-  //??? removedParenId: null,
+  removedParenId: null,
 };
 
 export default function reducer(state = defaultState, action) {
@@ -30,6 +30,7 @@ export default function reducer(state = defaultState, action) {
         ...state,
         all,
         removedNote: null,
+        removedParenId: null,
       };
     }
     case REMOVE_NOTE: {
@@ -50,11 +51,18 @@ export default function reducer(state = defaultState, action) {
         ...state,
         all,
         removedNote,
+        removedParenId: action.parentId,
       };
     }
     case REVERT_NOTE: {
+      const parent = state.all[state.removedParenId];
+      const children = [...parent.children, state.removedNote.id];
       const all = {
         ...state.all,
+        [parent.id]: {
+          ...parent,
+          children,
+        },
         [state.removedNote.id]: state.removedNote,
       };
 
@@ -63,6 +71,7 @@ export default function reducer(state = defaultState, action) {
         ...state,
         all,
         removedNote: null,
+        removedParenId: null,
       };
     }
     default:

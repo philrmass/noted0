@@ -2,7 +2,8 @@ import {
   ADD_NOTE,
   REMOVE_NOTE,
   REVERT_NOTE,
-  UPDATE_NOTE,
+  UPDATE_COLOR,
+  UPDATE_TEXT,
 } from './constants';
 import { getEmptyNote, getNotesDefault } from '../utilities/notes';
 import { saveItem, loadItem } from '../utilities/storage';
@@ -61,16 +62,19 @@ export default function reducer(state = defaultState, action) {
         removedParenId: null,
       };
     }
-    case UPDATE_NOTE: {
-      const note = {
-        ...state.all[action.id],
-        text: action.text,
-        color: action.color,
+    case UPDATE_COLOR: {
+      const params = { color: action.color };
+      const all = updateNote(state.all, action.id, params);
+
+      saveItem(allKey, all);
+      return {
+        ...state,
+        all,
       };
-      const all = {
-        ...state.all,
-        [note.id]: note,
-      };
+    }
+    case UPDATE_TEXT: {
+      const params = { text: action.text };
+      const all = updateNote(state.all, action.id, params);
 
       saveItem(allKey, all);
       return {
@@ -93,6 +97,18 @@ function addNote(all, note, parentId) {
       ...parent,
       children,
     },
+    [note.id]: note,
+  };
+}
+
+function updateNote(all, id, params) {
+  const note = {
+    ...all[id],
+    ...params,
+  };
+
+  return {
+    ...all,
     [note.id]: note,
   };
 }

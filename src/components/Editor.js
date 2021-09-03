@@ -1,29 +1,28 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { editNote } from '../redux/uiActions';
-import { updateNote } from '../redux/notesActions';
+import { addOverlay, editNote } from '../redux/uiActions';
+import { updateText } from '../redux/notesActions';
 import styles from './Editor.module.css';
 
 import Handle from './Handle';
 
 function Editor() {
-  const [color, setColor] = useState('');
   const [text, setText] = useState('');
   const dis = useDispatch();
   const all = useSelector(state => state.notes.all);
   const editingId = useSelector(state => state.ui.editingId);
+  const color = all[editingId]?.color;
   const background = color ?? '#ffffff';
   const style = { background };
 
   useEffect(() => {
     const note = all[editingId];
-    setColor(note?.color);
     setText(note?.text);
   }, [all, editingId]);
 
   const save = () => {
-    dis(updateNote(editingId, text, color));
+    dis(updateText(editingId, text ));
     dis(editNote(null));
   };
 
@@ -33,7 +32,7 @@ function Editor() {
         <div className={styles.buttons}>
           <button
             className={styles.button}
-            onClick={() => console.warn('OPEN-COLOR')}
+            onClick={() => dis(addOverlay('colors'))}
           >
             Color
           </button>

@@ -1,19 +1,25 @@
-import { EDIT_NOTE } from './constants';
+import { ADD_OVERLAY, EDIT_NOTE, REMOVE_OVERLAY } from './constants';
 import { /*saveItem, */loadItem } from '../utilities/storage';
 
 const parentIdKey = 'notedParent';
 
-//??? remove editing
 const defaultState = {
   editingId: null,
-  //editingId: '2fd53d2a-7771-43f7-9b39-479bf4875e84',
   overlays: [],
-  //overlays: ['editor'],
   parentId: loadItem(parentIdKey, 'root'),
 };
+//saveItem(parentIdKey, parentId);
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
+    case ADD_OVERLAY: {
+      const overlays = [...state.overlays, action.name];
+
+      return {
+        ...state,
+        overlays,
+      };
+    }
     case EDIT_NOTE: {
       const name = 'editor';
       const filtered = state.overlays.filter((overlay) => overlay !== name);
@@ -25,7 +31,14 @@ export default function reducer(state = defaultState, action) {
         overlays,
       };
     }
-    //saveItem(allKey, all);
+    case REMOVE_OVERLAY: {
+      const overlays = state.overlays.filter((overlay) => overlay !== action.name);
+
+      return {
+        ...state,
+        overlays,
+      };
+    }
     default:
       return state;
   }

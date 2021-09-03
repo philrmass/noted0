@@ -4,6 +4,7 @@ import version from '../version';
 import styles from './App.module.css';
 
 import Controls from './Controls';
+import Colors from './Colors';
 import Editor from './Editor';
 import Notes from './Notes';
 
@@ -16,6 +17,9 @@ function App() {
 
       if (top === 'editor') {
         return <Editor />;
+      }
+      else if (top === 'colors') {
+        return <Colors />;
       }
     }
   };

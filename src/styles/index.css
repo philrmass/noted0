@@ -2,7 +2,11 @@
 @import './reset.css';
 @import './sizes.css';
 
+:root {
+  --fontFamily: Arial, sans-serif;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: var(--fontFamily);
   font-size: var(--fontSize);
 }

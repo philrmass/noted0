@@ -67,13 +67,15 @@ export default function reducer(state = defaultState, action) {
         text: action.text,
         color: action.color,
       };
+      const all = {
+        ...state.all,
+        [note.id]: note,
+      };
 
+      saveItem(allKey, all);
       return {
         ...state,
-        all: {
-          ...state.all,
-          [note.id]: note,
-        },
+        all,
       };
     }
     default:

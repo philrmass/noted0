@@ -41,13 +41,11 @@ function Editor() {
         <div style={style} className={styles.note}>
           <div className={styles.noteButtons}>
           </div>
-          <div className={styles.text}>
-            {text}
-            {/*
-            <textarea>
-            </textarea>
-            */}
-          </div>
+          <textarea
+            className={styles.textarea}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
           <Handle />
         </div>
         <div className={styles.buttons}>

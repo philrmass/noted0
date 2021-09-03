@@ -56,7 +56,9 @@ function Notes() {
         >
           {note.text}
         </div>
-        <Handle />
+        <div className={styles.handle}>
+          <Handle />
+        </div>
       </li>
     );
   };

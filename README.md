@@ -9,11 +9,12 @@ Deployed at [https://philrmass.github.io/noted/](https://philrmass.github.io/not
 - `npm run start` to start the dev server
 
 ### To Do
-- text area
 - color editor
 - redux ui overlay actions
 - select note as parent
+- fix long press
 - show children icon
+- handle
 - drag and drop
 - app icon
 - manifest & icon set

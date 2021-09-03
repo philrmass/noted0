@@ -10,11 +10,10 @@ Deployed at [https://philrmass.github.io/noted/](https://philrmass.github.io/not
 
 ### To Do
 - color editor
-- redux ui overlay actions
-- select note as parent
 - fix long press
+- select note as parent on click if children
 - show children icon
-- handle
+- handle ui
 - drag and drop
 - app icon
 - manifest & icon set

@@ -7,14 +7,19 @@ import styles from './Colors.module.css';
 function Colors() {
   const dis = useDispatch();
   const editingId = useSelector(state => state.ui.editingId);
-  const colors = ['#f08000'];
+  const colors = [
+    '#f00000',
+    '#f08000',
+    '#f0f000',
+    '#80f000',
+  ];
 
   const save = (color) => {
     dis(updateColor(editingId, color));
     dis(removeOverlay('colors'));
   };
 
-  const buildColors = () => {
+  const buildColors = () => (
     colors.map((color) => {
       const style = { background: color };
 
@@ -28,14 +33,16 @@ function Colors() {
           {color}
         </li>
       );
-    });
-  };
+    })
+  );
 
   return (
     <main className={styles.main}>
-      <ul className={styles.colors}>
-        {buildColors()}
-      </ul>
+      <div className={styles.content}>
+        <ul className={styles.colors}>
+          {buildColors()}
+        </ul>
+      </div>
       <div className={styles.buttons}>
         <button
           className={styles.button}

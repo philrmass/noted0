@@ -4,16 +4,36 @@
   bottom: 0;
   left: 0;
   right: 0;
+  padding-top: var(--size2);
   background: var(--backgroundDark);
   z-index: 200;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .colors {
+  flex-grow: 1;
+  width: 90vw;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border: 1px solid #2222;
 }
 
 .color {
-  width: var(--size8);
-  height: var(--size8);
+  height: 10%;
+  color: #888;
+  font-size: 0.8em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .buttons {

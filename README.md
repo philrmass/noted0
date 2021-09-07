@@ -9,7 +9,8 @@ Deployed at [https://philrmass.github.io/noted/](https://philrmass.github.io/not
 - `npm run start` to start the dev server
 
 ### To Do
-- color editor
+- create colors list
+- layout colors
 - fix long press
 - select note as parent on click if children
 - show children icon

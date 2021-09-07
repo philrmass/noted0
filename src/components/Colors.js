@@ -1,18 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
 
+import { getColors } from '../utilities/colors';
 import { updateColor } from '../redux/notesActions';
 import { removeOverlay } from '../redux/uiActions';
 import styles from './Colors.module.css';
 
+const colors = getColors();
+
 function Colors() {
   const dis = useDispatch();
   const editingId = useSelector(state => state.ui.editingId);
-  const colors = [
-    '#f00000',
-    '#f08000',
-    '#f0f000',
-    '#80f000',
-  ];
 
   const save = (color) => {
     dis(updateColor(editingId, color));

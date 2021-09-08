@@ -35,11 +35,9 @@ function Colors() {
 
   return (
     <main className={styles.main}>
-      <div className={styles.content}>
-        <ul className={styles.colors}>
-          {buildColors()}
-        </ul>
-      </div>
+      <ul className={styles.colors}>
+        {buildColors()}
+      </ul>
       <div className={styles.buttons}>
         <button
           className={styles.button}

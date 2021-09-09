@@ -9,8 +9,8 @@ Deployed at [https://philrmass.github.io/noted/](https://philrmass.github.io/not
 - `npm run start` to start the dev server
 
 ### To Do
-- create colors list
-- layout colors
+- save last color and use for new notes, store in local storage
+- keep text when setting color
 - fix long press
 - select note as parent on click if children
 - show children icon

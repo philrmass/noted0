@@ -27,7 +27,6 @@ function Colors() {
           className={styles.color}
           onClick={() => save(color)}
         >
-          {color}
         </li>
       );
     })

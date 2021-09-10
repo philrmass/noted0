@@ -17,7 +17,7 @@
 }
 
 .add {
-  position: absolute;
+  position: fixed;
   bottom: var(--size1);
   right: var(--size1);
 }
@@ -29,7 +29,7 @@
 }
 
 .revert {
-  position: absolute;
+  position: fixed;
   bottom: var(--size1);
   left: var(--size1);
 }

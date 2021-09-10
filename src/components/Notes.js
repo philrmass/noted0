@@ -8,7 +8,7 @@ import styles from './Notes.module.css';
 import Handle from './Handle';
 
 function Notes() {
-  const [start, setStart] = useState(null);
+  const [_, setTimer] = useState(null);
   const dis = useDispatch();
   const allNotes = useSelector(state => state.notes.all);
   const parentId = useSelector(state => state.ui.parentId) ?? 'root';
@@ -16,20 +16,24 @@ function Notes() {
   const ids = parent.children ?? [];
   const notes = ids.map((id) => allNotes[id]);
 
-  const startPress = (e) => {
+  const startPress = (e, id) => {
     e.preventDefault();
-    setStart(Date.now());
+    setTimer((timerId) => {
+      if (timerId) {
+        clearTimeout(timerId);
+      }
+      return setTimeout(() => dis(editNote(id)), 500);
+    });
   };
 
-  const endPress = (e, id) => {
+  const endPress = (e) => {
     e.preventDefault();
-    if (start) {
-      const duration = Date.now() - start;
-      if (duration > 500) {
-        dis(editNote(id));
+    setTimer((timerId) => {
+      if (timerId) {
+        clearTimeout(timerId);
       }
-      setStart(null);
-    }
+      return null;
+    });
   };
 
   const buildNote = (note) => {
@@ -49,10 +53,10 @@ function Notes() {
         </div>
         <div
           className={styles.text}
-          onTouchStart={startPress}
-          onTouchEnd={(e) => endPress(e, note.id)}
-          onMouseDown={startPress}
-          onMouseUp={(e) => endPress(e, note.id)}
+          onTouchStart={(e) => startPress(e, note.id)}
+          onTouchEnd={endPress}
+          onMouseDown={(e) => startPress(e, note.id)}
+          onMouseUp={endPress}
         >
           {note.text}
         </div>

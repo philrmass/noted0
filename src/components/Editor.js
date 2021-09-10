@@ -59,15 +59,15 @@ function Editor() {
         <div className={styles.buttons}>
           <button
             className={styles.button}
-            onClick={save}
-          >
-            Save
-          </button>
-          <button
-            className={styles.button}
             onClick={() => dis(editNote(null))}
           >
             Cancel
+          </button>
+          <button
+            className={styles.button}
+            onClick={save}
+          >
+            Save
           </button>
         </div>
       </div>

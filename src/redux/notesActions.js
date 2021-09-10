@@ -4,8 +4,7 @@ import {
   ADD_NOTE,
   REMOVE_NOTE,
   REVERT_NOTE,
-  UPDATE_COLOR,
-  UPDATE_TEXT,
+  UPDATE_NOTE,
 } from './constants';
 
 export function addNote(parentId) {
@@ -21,11 +20,6 @@ export function revertNote() {
   return { type: REVERT_NOTE };
 }
 
-export function updateText(id, text) {
-  return { type: UPDATE_TEXT, id, text };
+export function updateNote(id, text, color) {
+  return { type: UPDATE_NOTE, id, text, color };
 }
-
-export function updateColor(id, color) {
-  return { type: UPDATE_COLOR, id, color };
-}
-

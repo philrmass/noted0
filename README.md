@@ -9,12 +9,11 @@ Deployed at [https://philrmass.github.io/noted/](https://philrmass.github.io/not
 - `npm run start` to start the dev server
 
 ### To Do
-- save last color and use for new notes, store in local storage
-- keep text when setting color
 - fix long press
-- select note as parent on click if children
-- show children icon
-- handle ui
+- select note as parent on click, show full and children
+- add children icon, x to top left
+- add handle dots
+- make x from svg or html
 - drag and drop
 - app icon
 - manifest & icon set

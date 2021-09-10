@@ -2,16 +2,17 @@ import {
   ADD_NOTE,
   REMOVE_NOTE,
   REVERT_NOTE,
-  UPDATE_COLOR,
-  UPDATE_TEXT,
+  UPDATE_NOTE,
 } from './constants';
 import { getEmptyNote, getNotesDefault } from '../utilities/notes';
 import { saveItem, loadItem } from '../utilities/storage';
 
-const allKey = 'notedNotes';
+const allKey = 'notedAll';
+const lastColorKey = 'notedLastColor';
 
 const defaultState = {
   all: loadItem(allKey, getNotesDefault()),
+  lastColor: loadItem(lastColorKey, null),
   removedNote: null,
   removedParenId: null,
 };
@@ -62,24 +63,20 @@ export default function reducer(state = defaultState, action) {
         removedParenId: null,
       };
     }
-    case UPDATE_COLOR: {
-      const params = { color: action.color };
-      const all = updateNote(state.all, action.id, params);
-
-      saveItem(allKey, all);
-      return {
-        ...state,
-        all,
+    case UPDATE_NOTE: {
+      const params = {
+        text: action.text,
+        color: action.color,
       };
-    }
-    case UPDATE_TEXT: {
-      const params = { text: action.text };
       const all = updateNote(state.all, action.id, params);
+      const lastColor = action.color ?? state.lastColor;
 
       saveItem(allKey, all);
+      saveItem(lastColorKey, lastColor);
       return {
         ...state,
         all,
+        lastColor,
       };
     }
     default:

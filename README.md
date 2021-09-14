@@ -9,8 +9,9 @@ Deployed at [https://philrmass.github.io/noted/](https://philrmass.github.io/not
 - `npm run start` to start the dev server
 
 ### To Do
-- drag and drop
-- add handle dots
+- add drag and drop reordering
+- add drag and drop handle
+- add drag and drop handle style, remove Handle?
 - select note as parent on click, show full and children
 - add children icon, x to top left
 - make x from svg or html

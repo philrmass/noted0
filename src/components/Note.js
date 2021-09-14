@@ -22,8 +22,14 @@ export default function Notes({ id, parentId, color, text }) {
     }),
   }), []);
 
+  const onMove = (e) => {
+    if (isDragging) {
+      dis(addLog('move'));
+      e.preventDefault();
+    }
+  };
+
   const startPress = (e) => {
-    dis(addLog('start'));
     e.preventDefault();
     setTimer((timerId) => {
       if (timerId) {
@@ -44,10 +50,6 @@ export default function Notes({ id, parentId, color, text }) {
     });
   };
 
-  if (isDragging) {
-    addLog('DRAGGING', id);
-  }
-
   return (
     <div ref={dragRef} className={styles.note} style={style}>
       <div className={styles.buttons}>
@@ -59,8 +61,10 @@ export default function Notes({ id, parentId, color, text }) {
         className={styles.text}
         onTouchStart={startPress}
         onTouchEnd={endPress}
+        onTouchMove={onMove}
         onMouseDown={startPress}
         onMouseUp={endPress}
+        onMouseMove={onMove}
       >
         {text}
         {isDragging ? ' [dragging]' : ''}

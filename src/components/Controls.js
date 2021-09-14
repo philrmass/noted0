@@ -5,10 +5,11 @@ import { addNote, revertNote } from '../redux/notesActions';
 import { editNote } from '../redux/uiActions';
 import styles from './Controls.module.css';
 
-function Controls({ children }) {
+function Controls() {
   const dis = useDispatch();
   const parentId = useSelector(state => state.ui.parentId);
   const removedNote = useSelector(state => state.notes.removedNote);
+  const logs = useSelector(state => state.ui.logs);
 
   const add = () => {
     const addAction = addNote(parentId);
@@ -18,7 +19,9 @@ function Controls({ children }) {
 
   return (
     <>
-      {children}
+      <div className={styles.logs}>
+        {logs.reduce((all, log) => `${all}${log}\n`, '')}
+      </div>
       <button
         className={cln(styles.button, styles.add)}
         onClick={() => add()}

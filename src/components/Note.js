@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { removeNote } from '../redux/notesActions';
-import { editNote } from '../redux/uiActions';
+import { addLog, editNote } from '../redux/uiActions';
 import styles from './Note.module.css';
 
 import Handle from './Handle';
@@ -14,6 +14,7 @@ export default function Notes({ id, parentId, color, text }) {
   const dis = useDispatch();
 
   const startPress = (e) => {
+    dis(addLog('start'));
     e.preventDefault();
     setTimer((timerId) => {
       if (timerId) {
@@ -24,6 +25,7 @@ export default function Notes({ id, parentId, color, text }) {
   };
 
   const endPress = (e) => {
+    dis(addLog('end'));
     e.preventDefault();
     setTimer((timerId) => {
       if (timerId) {

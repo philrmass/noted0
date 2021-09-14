@@ -1,77 +1,23 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { removeNote } from '../redux/notesActions';
-import { editNote } from '../redux/uiActions';
 import styles from './Notes.module.css';
 
-import Handle from './Handle';
+import Note from './Note';
 
-function Notes() {
-  const [_, setTimer] = useState(null);
-  const dis = useDispatch();
+export default function Notes() {
   const allNotes = useSelector(state => state.notes.all);
   const parentId = useSelector(state => state.ui.parentId) ?? 'root';
   const parent = allNotes[parentId];
   const ids = parent.children ?? [];
   const notes = ids.map((id) => allNotes[id]);
 
-  const startPress = (e, id) => {
-    e.preventDefault();
-    setTimer((timerId) => {
-      if (timerId) {
-        clearTimeout(timerId);
-      }
-      return setTimeout(() => dis(editNote(id)), 500);
-    });
-  };
-
-  const endPress = (e) => {
-    e.preventDefault();
-    setTimer((timerId) => {
-      if (timerId) {
-        clearTimeout(timerId);
-      }
-      return null;
-    });
-  };
-
-  const buildNote = (note) => {
-    const color = note.color ?? '#ffffff';
-    const style = { background: color };
-
-    return (
-      <li
-        key={note.id}
-        style={style}
-        className={styles.note}
-      >
-        <div className={styles.buttons}>
-          <button className={styles.button} onClick={() => dis(removeNote(note.id, parentId))}>
-            x
-          </button>
-        </div>
-        <div
-          className={styles.text}
-          onTouchStart={(e) => startPress(e, note.id)}
-          onTouchEnd={endPress}
-          onMouseDown={(e) => startPress(e, note.id)}
-          onMouseUp={endPress}
-        >
-          {note.text}
-        </div>
-        <div className={styles.handle}>
-          <Handle />
-        </div>
-      </li>
-    );
-  };
-
   return (
     <ul>
-      {notes.map(note => buildNote(note))}
+      {notes.map((note) => (
+        <li key={note.id} className={styles.note}>
+          <Note id={note.id} parentId={parentId} color={note.color} text={note.text} />
+        </li>
+      ))}
     </ul>
   );
 }
-
-export default Notes;

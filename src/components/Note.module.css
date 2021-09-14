@@ -1,0 +1,43 @@
+.note {
+  height: calc(3.6em + 2 * var(--size1));;
+  line-height: 1.2em;
+  display: flex;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.buttons {
+  flex-shrink: 0;
+  width: var(--handleWidth);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  width: var(--size4);
+  height: var(--size4);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--shade);
+}
+
+.button:hover {
+  background: var(--shadeLight);
+}
+
+.button:active {
+  background: var(--shadeDark);
+}
+
+.text {
+  flex-grow: 1;
+  padding: var(--size1) var(--size1);
+  overflow: hidden;
+}
+
+.handle {
+  flex-shrink: 0;
+}

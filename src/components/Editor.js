@@ -37,6 +37,7 @@ function Editor() {
 
   return (
     <main className={styles.main}>
+      <div className={styles.space} onClick={() => setShowColor(true)}></div>
       <div>
         <div className={styles.buttons}>
           <button
@@ -71,6 +72,7 @@ function Editor() {
           </button>
         </div>
       </div>
+      <div className={styles.space} onClick={() => save()}></div>
     </main>
   );
 }

@@ -1,38 +1,12 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useDrag } from 'react-dnd';
-
-import { removeNote } from '../redux/notesActions';
-import { addLog, editNote } from '../redux/uiActions';
-import styles from './Note.module.css';
-
-import Handle from './Handle';
-
-export default function Notes({ id, parentId, color, text }) {
-  const background = color ?? '#ffffff';
-  const style = { background };
-  const [_, setTimer] = useState(null);
-  const dis = useDispatch();
-
-  const [{ isDragging }, dragRef] = useDrag(() => ({
-    type: 'Note',
-    item: { id },
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-  }), []);
-
+/*
   const onMove = (e) => {
-    /*
     if (isDragging) {
       dis(addLog('move'));
       e.preventDefault();
     }
-    */
   };
 
   const startPress = (e) => {
-    /*
     e.preventDefault();
     setTimer((timerId) => {
       if (timerId) {
@@ -40,11 +14,9 @@ export default function Notes({ id, parentId, color, text }) {
       }
       return setTimeout(() => dis(editNote(id)), 500);
     });
-    */
   };
 
   const endPress = (e) => {
-    /*
     dis(addLog('end'));
     e.preventDefault();
     setTimer((timerId) => {
@@ -53,11 +25,43 @@ export default function Notes({ id, parentId, color, text }) {
       }
       return null;
     });
-    */
   };
 
+        onTouchStart={startPress}
+        onTouchEnd={endPress}
+        onTouchMove={onMove}
+        onMouseDown={startPress}
+        onMouseUp={endPress}
+        onMouseMove={onMove}
+*/
+//import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useDrag } from 'react-dnd';
+//import { useDrag } from 'react-dnd';
+
+import { removeNote } from '../redux/notesActions';
+//import { addLog, editNote } from '../redux/uiActions';
+import styles from './Note.module.css';
+
+import Handle from './Handle';
+
+//cursor: 'move',
+export default function Notes({ id, parentId, color, text }) {
+  const background = color ?? '#ffffff';
+  const style = { background };
+  //const [_, setTimer] = useState(null);
+  const dis = useDispatch();
+
+  const [{ isDragging }, dragRef, previewRef] = useDrag(() => ({
+    type: 'Note',
+    item: { id },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  }), []);
+
   return (
-    <div ref={dragRef} className={styles.note} style={style}>
+    <div ref={previewRef} className={styles.note} style={style}>
       <div className={styles.buttons}>
         <button className={styles.button} onClick={() => dis(removeNote(id, parentId))}>
           x
@@ -65,17 +69,11 @@ export default function Notes({ id, parentId, color, text }) {
       </div>
       <div
         className={styles.text}
-        onTouchStart={startPress}
-        onTouchEnd={endPress}
-        onTouchMove={onMove}
-        onMouseDown={startPress}
-        onMouseUp={endPress}
-        onMouseMove={onMove}
       >
         {text}
         {isDragging ? ' [dragging]' : ''}
       </div>
-      <div className={styles.handle}>
+      <div ref={dragRef} className={styles.handle}>
         <Handle />
       </div>
     </div>
@@ -172,34 +170,3 @@ export const Card = ({ id, text, index, moveCard }) => {
 */
 
 //??? handle
-/*
-import { useDrag } from 'react-dnd';
-import { ItemTypes } from './ItemTypes';
-const style = {
-    border: '1px dashed gray',
-    padding: '0.5rem 1rem',
-    marginBottom: '.5rem',
-    backgroundColor: 'white',
-    width: '20rem',
-};
-const handleStyle = {
-    backgroundColor: 'green',
-    width: '1rem',
-    height: '1rem',
-    display: 'inline-block',
-    marginRight: '0.75rem',
-    cursor: 'move',
-};
-export const BoxWithHandle = () => {
-    const [{ opacity }, drag, preview] = useDrag(() => ({
-        type: ItemTypes.BOX,
-        collect: (monitor) => ({
-            opacity: monitor.isDragging() ? 0.4 : 1,
-        }),
-    }));
-    return (<div ref={preview} style={{ ...style, opacity }}>
-			<div ref={drag} style={handleStyle}/>
-			Drag me by the handle
-		</div>);
-};
-*/

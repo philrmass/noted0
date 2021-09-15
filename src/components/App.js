@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+//import { HTML5Backend } from 'react-dnd-html5-backend';
+import { TouchBackend } from 'react-dnd-touch-backend';
 
 import version from '../version';
 import styles from './App.module.css';
@@ -18,7 +19,7 @@ function App() {
 
   return (
     <main className={styles.main}>
-      <DndProvider backend={HTML5Backend}>
+      <DndProvider backend={TouchBackend}>
         <Notes />
       </DndProvider>
       <Controls />

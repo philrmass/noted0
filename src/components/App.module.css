@@ -11,6 +11,6 @@
   position: fixed;
   bottom: var(--size0);
   right: var(--size8);
-  color: var(--textLight);
+  color: var(--background);
   font-size: var(--fontSizeSmall);
 }

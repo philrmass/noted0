@@ -23,13 +23,16 @@ export default function Notes({ id, parentId, color, text }) {
   }), []);
 
   const onMove = (e) => {
+    /*
     if (isDragging) {
       dis(addLog('move'));
       e.preventDefault();
     }
+    */
   };
 
   const startPress = (e) => {
+    /*
     e.preventDefault();
     setTimer((timerId) => {
       if (timerId) {
@@ -37,9 +40,11 @@ export default function Notes({ id, parentId, color, text }) {
       }
       return setTimeout(() => dis(editNote(id)), 500);
     });
+    */
   };
 
   const endPress = (e) => {
+    /*
     dis(addLog('end'));
     e.preventDefault();
     setTimer((timerId) => {
@@ -48,6 +53,7 @@ export default function Notes({ id, parentId, color, text }) {
       }
       return null;
     });
+    */
   };
 
   return (

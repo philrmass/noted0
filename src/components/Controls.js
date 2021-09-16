@@ -9,7 +9,6 @@ function Controls() {
   const dis = useDispatch();
   const parentId = useSelector(state => state.ui.parentId);
   const removedNote = useSelector(state => state.notes.removedNote);
-  const logs = useSelector(state => state.ui.logs);
 
   const add = () => {
     const addAction = addNote(parentId);
@@ -19,9 +18,6 @@ function Controls() {
 
   return (
     <>
-      <div className={styles.logs}>
-        {logs.reduce((all, log) => `${all}${log}\n`, '')}
-      </div>
       <button
         className={cln(styles.button, styles.add)}
         onClick={() => add()}

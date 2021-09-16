@@ -40,92 +40,17 @@ import { useDispatch } from 'react-redux';
 import { useDrag, useDragLayer, useDrop } from 'react-dnd';
 
 import { removeNote } from '../redux/notesActions';
-import { addLog/*, editNote*/ } from '../redux/uiActions';
+//import { addLog/*, editNote*/ } from '../redux/uiActions';
 import styles from './Note.module.css';
 
 import Handle from './Handle';
 
-//cursor: 'move',
-export default function Note({ id, parentId, color, text }) {
+export default function Note({ id, parentId, color, text, handle }) {
   const background = color ?? '#ffffff';
   const style = { background };
   //const [_, setTimer] = useState(null);
   const dis = useDispatch();
   const ref = useRef();
-
-  const moveCard = (dragId) => {
-    console.warn(' move', dragId.slice(0, 4), 'before', id.slice(0, 4));
-  };
-
-  const [{ isDragging }, drag, preview] = useDrag(() => ({
-    type: 'Note',
-    item: { id },
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-  }), []);
-
-  const [, drop] = useDrop({
-    accept: 'Note',
-    drop(item, monitor) {
-      console.log('drop', item.id.slice(0, 4), 'on', id.slice(0, 4));
-    },
-    hover(item, monitor) {
-      if (item.id !== id) {
-        console.log('hover', item.id.slice(0, 4), 'on', id.slice(0, 4));
-      }
-      /*
-      if (!ref.current) {
-        return;
-      }
-      const dragIndex = item.index;
-      const hoverIndex = index;
-
-      // Don't replace items with themselves
-      if (dragIndex === hoverIndex) {
-        return;
-      }
-
-      // Determine rectangle on screen
-      const hoverBoundingRect = ref.current?.getBoundingClientRect();
-
-      // Get vertical middle
-      const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-
-      // Determine mouse position
-      const clientOffset = monitor.getClientOffset();
-
-      // Get pixels to the top
-      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-
-      // Only perform the move when the mouse has crossed half of the items height
-      // When dragging downwards, only move when the cursor is below 50%
-      // When dragging upwards, only move when the cursor is above 50%
-      // Dragging downwards
-      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-        return;
-      }
-      // Dragging upwards
-      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-        return;
-      }
-      // Time to actually perform the action
-      */
-
-      //moveCard(item.id);
-
-      /*
-      // Note: we're mutating the monitor item here!
-      // Generally it's better to avoid mutations,
-      // but it's good here for the sake of performance
-      // to avoid expensive index searches.
-      //item.index = hoverIndex;
-      */
-    },
-  });
-  const temp = useDragLayer((monitor) => {});
-
-  preview(drop(ref));
 
   return (
     <div ref={ref} className={styles.note} style={style}>
@@ -137,10 +62,10 @@ export default function Note({ id, parentId, color, text }) {
       <div
         className={styles.text}
       >
+        {'YO'}
         {text}
-        {isDragging ? ' [dragging]' : ''}
       </div>
-      <div ref={drag} className={styles.handle}>
+      <div ref={handle} className={styles.handle}>
         <Handle />
       </div>
     </div>

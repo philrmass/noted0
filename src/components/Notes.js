@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 
 import styles from './Notes.module.css';
 
-import Note from './Note';
+import DraggableNote from './DraggableNote';
 
 export default function Notes() {
   const allNotes = useSelector(state => state.notes.all);
@@ -13,9 +13,9 @@ export default function Notes() {
 
   return (
     <ul>
-      {notes.map((note) => (
+      {notes.map((note, index) => (
         <li key={note.id} className={styles.note}>
-          <Note id={note.id} parentId={parentId} color={note.color} text={note.text} />
+          <DraggableNote index={index} parentId={parentId} note={note} />
         </li>
       ))}
     </ul>

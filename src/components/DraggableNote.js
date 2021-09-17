@@ -8,8 +8,6 @@ import Handle from './Handle';
 
 export default function DraggableNote({ index, parentId, note }) {
   const dis = useDispatch();
-  const background = note.color ?? '#ffffff';
-  const style = { background };
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'Note',
@@ -24,8 +22,11 @@ export default function DraggableNote({ index, parentId, note }) {
     }),
   }), []);
 
-  const [, drop] = useDrop({
+  const [{ isOver }, drop] = useDrop({
     accept: 'Note',
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+    }),
     drop(item) {
       console.warn('drop', item.id.slice(0, 4), 'on', note.id.slice(0, 4));
     },
@@ -36,7 +37,7 @@ export default function DraggableNote({ index, parentId, note }) {
       }
       */
 
-      console.log(`[${index}] (${note.id.slice(0, 4)}) -> [${item.index}]`);
+      console.warn(`[${index}] (${note.id.slice(0, 4)}) -> [${item.index}]`);
 
       //const clientOffset = monitor.getClientOffset();
       //??? restore, set index for space
@@ -83,6 +84,10 @@ export default function DraggableNote({ index, parentId, note }) {
     },
   });
 
+  const background = note.color ?? '#ffffff';
+  const opacity = isOver ? '0.4' : '1';
+  const style = { background, opacity };
+
   return (
     <div ref={drop} className={styles.note} style={style}>
       <div className={styles.buttons}>
@@ -95,6 +100,7 @@ export default function DraggableNote({ index, parentId, note }) {
       >
         {note.text}
         {isDragging ? ` [dragging ${note.id.slice(0, 4)}]` : ''}
+        {isOver ? ` [OVER ${note.id.slice(0, 4)}]` : ''}
       </div>
       <div ref={drag} className={styles.handle}>
         <Handle />

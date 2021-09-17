@@ -13,4 +13,5 @@
   right: var(--size8);
   color: var(--background);
   font-size: var(--fontSizeSmall);
+  text-shadow: 1px 1px 3px black, -1px 1px 3px black;
 }

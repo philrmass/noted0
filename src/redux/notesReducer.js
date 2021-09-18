@@ -1,5 +1,6 @@
 import {
   ADD_NOTE,
+  MOVE_NOTE,
   REMOVE_NOTE,
   REVERT_NOTE,
   UPDATE_NOTE,
@@ -29,6 +30,26 @@ export default function reducer(state = defaultState, action) {
         all,
         removedNote: null,
         removedParenId: null,
+      };
+    }
+    case MOVE_NOTE: {
+      const parent = state.all[action.parentId];
+      const from = parent.children.findIndex(id => id === action.fromId);
+      const to = parent.children.findIndex(id => id === action.toId);
+      const children = move(parent.children, from, to);
+      const all = {
+        ...state.all,
+        [parent.id]: {
+          ...parent,
+          children,
+        },
+      };
+
+      console.warn('move', from, to, action.fromId.slice(0, 4), action.toId.slice(0, 4));
+      saveItem(allKey, all);
+      return {
+        ...state,
+        all,
       };
     }
     case REMOVE_NOTE: {
@@ -113,4 +134,24 @@ function updateNote(all, id, params) {
 function removeProperty(key, obj) {
   const { [key]: _, ...rest } = obj;
   return rest;
+}
+
+function move(list, from, to) {
+  if (to < from) {
+    const a = list.slice(0, to);
+    const b = list.slice(to, from);
+    const c = list.slice(from, from + 1);
+    const d = list.slice(from + 1);
+
+    return [...a, ...c, ...b, ...d];
+  } else if(from < to) {
+    const a = list.slice(0, from);
+    const b = list.slice(from, from + 1);
+    const c = list.slice(from + 1, to + 1);
+    const d = list.slice(to + 1);
+
+    return [...a, ...c, ...b, ...d];
+  }
+
+  return list;
 }

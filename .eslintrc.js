@@ -36,7 +36,7 @@ module.exports = {
     'key-spacing': 'warn',
     'linebreak-style': ['error', 'unix'],
     'no-irregular-whitespace': 'warn',
-    'no-console': ['warn', { allow: ['error', 'warn'] }],
+    'no-console': ['warn', { allow: ['error', 'log', 'warn'] }],
     'no-else-return': 'warn',
     'no-eval': 'error',
     'no-extra-bind': 'warn',

@@ -1,14 +1,15 @@
 import { useDispatch } from 'react-redux';
 import { useDrag, useDrop } from 'react-dnd';
 
-import { removeNote } from '../redux/notesActions';
+import { removeNote, moveNote } from '../redux/notesActions';
 import styles from './Note.module.css';
 
 import Handle from './Handle';
 
-export default function DraggableNote({ index, parentId, note }) {
+export default function DraggableNote({ index, parentId, note, setGap }) {
   const dis = useDispatch();
 
+  //??? remove index
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'Note',
     item: {
@@ -32,12 +33,24 @@ export default function DraggableNote({ index, parentId, note }) {
     },
     hover(item/*, monitor*/) {
       /*
+      const isOver = monitor.isOver();
       if (item.id === note.id) {
-        return;
+        console.log('isOver', isOver, null);
+        setGap(null);
+      } else {
+        console.log('isOver', isOver, index);
+        setGap(index);
       }
       */
+      if (item.id === note.id) {
+        console.warn('no-move');
+        return;
+      }
 
-      console.warn(`[${index}] (${note.id.slice(0, 4)}) -> [${item.index}]`);
+      console.warn('MOVE', item.id.slice(0, 4), 'on', note.id.slice(0, 4));
+      dis(moveNote(parentId, item.id, note.id));
+
+      //console.warn(`[${item.index}] -> [${index}] (${note.id.slice(0, 4)}) -> [${item.index}]`);
 
       //const clientOffset = monitor.getClientOffset();
       //??? restore, set index for space
@@ -98,9 +111,10 @@ export default function DraggableNote({ index, parentId, note }) {
       <div
         className={styles.text}
       >
+        {`[${note.id.slice(0, 4)}] (${index}) `}
         {note.text}
-        {isDragging ? ` [dragging ${note.id.slice(0, 4)}]` : ''}
-        {isOver ? ` [OVER ${note.id.slice(0, 4)}]` : ''}
+        {isDragging ? ' [DRAG]' : ''}
+        {isOver ? ' [OVER]' : ''}
       </div>
       <div ref={drag} className={styles.handle}>
         <Handle />

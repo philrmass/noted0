@@ -4,8 +4,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--backgroundDark);
-  z-index: 200;
+  background: var(--background);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,28 +12,6 @@
 
 .space {
   flex-grow: 1;
-}
-
-.note {
-  height: calc(3.6em + 2 * var(--size1));;
-  display: flex;
-  justify-content: space-between;
-}
-
-.noteButtons {
-  width: var(--handleWidth);
-  background: var(--shadeLight);
-}
-
-.textarea {
-  flex-grow: 1;
-  padding: var(--size1);
-  border: 0;
-  background: transparent;
-  font-family: var(--fontFamily);
-  font-size: 1em;
-  overflow: hidden;
-  resize: none;
 }
 
 .buttons {
@@ -53,3 +30,8 @@
 .button:nth-child(n+2) {
   margin-left: var(--size1);
 }
+
+.note {
+  display: flex;
+}
+

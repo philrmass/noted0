@@ -1,56 +1,19 @@
 .note {
-  height: calc(3.6em + 2 * var(--size1));
-  line-height: 1.2em;
+  margin-top: var(--size0);
+  margin-right: var(--size0);
+  margin-left: var(--size0);
   user-select: none;
 }
 
-.dragging {
-  margin-top: calc(3.6em + 2 * var(--size1));
+.noteDragging {
+  margin-top: var(--noteHeight);
   height: 0;
 }
 
 .content {
-  height: 100%;
   display: flex;
-  justify-content: space-between;
 }
 
-.hidden {
+.contenDragging {
   display: none;
-}
-
-.buttons {
-  flex-shrink: 0;
-  width: var(--handleWidth);
-  border-right: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.button {
-  width: var(--size4);
-  height: var(--size4);
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  background: var(--shade);
-}
-
-.button:hover {
-  background: var(--shadeLight);
-}
-
-.button:active {
-  background: var(--shadeDark);
-}
-
-.text {
-  flex-grow: 1;
-  padding: var(--size1) var(--size1);
-  overflow: hidden;
-}
-
-.handle {
-  flex-shrink: 0;
 }

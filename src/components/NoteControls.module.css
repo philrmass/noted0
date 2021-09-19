@@ -1,5 +1,6 @@
 .controls {
   width: var(--handleWidth);
+  height: var(--noteHeight);
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -15,10 +16,6 @@
   background: var(--shade);
 }
 
-.button:hover {
-  background: var(--shadeLight);
-}
-
 .button:active {
-  background: var(--shadeDark);
+  background: var(--shade);
 }

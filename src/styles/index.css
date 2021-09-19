@@ -7,6 +7,10 @@
 }
 
 body {
+  --handleWidth: 10vw;
+  --noteHeight: calc(3.6em + 2 * var(--size1));
+
   font-family: var(--fontRegular);
   font-size: var(--fontSize);
+  line-height: 1.2em;
 }

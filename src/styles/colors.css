@@ -1,13 +1,8 @@
 :root {
-  /* ??? clean up */
-  --background: #ffffff;
-  --backgroundDark: #989898;
-  --border: #c0c0c0;
+  --background: #989898;
   --button: #585858;
+  --text: #202020;
+  --textButton: #fafafa;
   --shade: #00000020;
   --shadeLight: #00000018;
-  --shadeDark: #00000030;
-  --text: #202020;
-  --textLight: #888888;
-  --textButton: #fafafa;
 }

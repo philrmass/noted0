@@ -1,9 +1,0 @@
-.note {
-  border: 2px solid var(--border);
-}
-
-.gap {
-  height: calc(3.6em + 2 * var(--size1));
-  width: 100%;
-}
-

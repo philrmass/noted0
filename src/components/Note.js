@@ -30,13 +30,13 @@ export default function Note({ parentId, id, color, text }) {
     },
   });
 
-  const contentClasses = cln({
-    [styles.content]: true,
-    [styles.hidden]: isDragging,
-  });
   const noteClasses = cln({
     [styles.note]: true,
-    [styles.dragging]: isDragging,
+    [styles.noteDragging]: isDragging,
+  });
+  const contentClasses = cln({
+    [styles.content]: true,
+    [styles.contenDragging]: isDragging,
   });
   const background = color ?? '#ffffff';
   const noteStyle = { background };
@@ -46,7 +46,7 @@ export default function Note({ parentId, id, color, text }) {
       <div className={contentClasses}>
         <NoteControls parentId={parentId} id={id} />
         <NoteText id={id} text={text} />
-        <div ref={drag} className={styles.handle}>
+        <div ref={drag}>
           <NoteHandle />
         </div>
       </div>

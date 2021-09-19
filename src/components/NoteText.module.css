@@ -1,13 +1,14 @@
 .text {
+  height: var(--noteHeight);
   flex-grow: 1;
-  height: calc(3.6em + 2 * var(--size1));
-  padding: var(--size1) var(--size1);
-  line-height: 1.2em;
+  padding: var(--size1);
   user-select: none;
+  white-space: pre-wrap;
   overflow: hidden;
 }
 
 .textarea {
+  height: var(--noteHeight);
   flex-grow: 1;
   padding: var(--size1);
   border: 0;
@@ -17,4 +18,3 @@
   overflow: hidden;
   resize: none;
 }
-

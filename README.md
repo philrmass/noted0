@@ -9,16 +9,24 @@ Deployed at [https://philrmass.github.io/noted/](https://philrmass.github.io/not
 - `npm run start` to start the dev server
 
 ### To Do
-- add drag and drop reordering
-- add drag and drop handle
-- add drag and drop handle style, remove Handle?
-- select note as parent on click, show full and children
-- add children icon, x to top left
-- make x from svg or html
-- app icon
+- add drag handle svg
+- make big buttons in editor and color using svg
+- make svg button icons (+, x)
+- app icon svg
 - manifest & icon set
 - PWA and agent
+- select note as parent on click, show full and children
+- add children icon
 - save data
 - load data
-- better font
-- icons for buttons
+- save data monthly
+- don't long press if moving a lot
+- adjust colors:
+  - adjust brown
+  - normal orange
+  - normal yellow, only 1
+  - normal green, only 1
+  - keep 2 blues, adjust 2nd
+  - adjust purple
+  - adjust pink
+  - make all lighter

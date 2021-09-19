@@ -1,5 +1,6 @@
-.main {
+.handle {
   width: var(--handleWidth);
-  height: 100%;
+  height: var(--noteHeight);
   background: var(--shadeLight);
+  cursor: move;
 }

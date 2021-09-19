@@ -17,7 +17,6 @@ function Colors({ setColor, onClose }) {
         <li
           key={color}
           style={style}
-          className={styles.color}
           onClick={() => pickColor(color)}
         >
         </li>

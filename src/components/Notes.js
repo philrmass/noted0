@@ -1,7 +1,5 @@
 import { useSelector } from 'react-redux';
 
-import styles from './Notes.module.css';
-
 import Note from './Note';
 
 export default function Notes() {
@@ -14,7 +12,7 @@ export default function Notes() {
   return (
     <ul>
       {notes.map((note) => (
-        <li key={note.id} className={styles.note}>
+        <li key={note.id}>
           <Note parentId={parentId} id={note.id} color={note.color} text={note.text} />
         </li>
       ))}

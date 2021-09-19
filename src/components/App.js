@@ -6,7 +6,7 @@ import version from '../version';
 import styles from './App.module.css';
 
 import Controls from './Controls';
-import DragLayer from './DragLayer';
+import NoteDragLayer from './NoteDragLayer';
 import Editor from './Editor';
 import Notes from './Notes';
 
@@ -21,7 +21,7 @@ function App() {
     <main className={styles.main}>
       <DndProvider backend={TouchBackend}>
         <Notes />
-        <DragLayer />
+        <NoteDragLayer />
       </DndProvider>
       <Controls />
       <div className={styles.version}>{`v${version}`}</div>

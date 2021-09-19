@@ -6,7 +6,9 @@ import { updateNote } from '../redux/notesActions';
 import styles from './Editor.module.css';
 
 import Colors from './Colors';
+import NoteControls from './NoteControls';
 import NoteHandle from './NoteHandle';
+import NoteText from './NoteText';
 
 function Editor() {
   const [text, setText] = useState('');
@@ -48,13 +50,8 @@ function Editor() {
           </button>
         </div>
         <div style={style} className={styles.note}>
-          <div className={styles.noteButtons}>
-          </div>
-          <textarea
-            className={styles.textarea}
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          />
+          <NoteControls />
+          <NoteText text={text} setText={setText} />
           <NoteHandle />
         </div>
         <div className={styles.buttons}>

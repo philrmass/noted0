@@ -2,9 +2,10 @@ import { useDispatch } from 'react-redux';
 import { useDrag, useDrop } from 'react-dnd';
 import cln from 'classnames';
 
-import { removeNote, moveNote } from '../redux/notesActions';
+import { moveNote } from '../redux/notesActions';
 import styles from './Note.module.css';
 
+import NoteControls from './NoteControls';
 import NoteHandle from './NoteHandle';
 import NoteText from './NoteText';
 
@@ -43,16 +44,11 @@ export default function Note({ parentId, id, color, text }) {
   return (
     <div ref={drop} className={noteClasses} style={noteStyle}>
       <div className={contentClasses}>
-        <div className={styles.buttons}>
-          <button className={styles.button} onClick={() => dis(removeNote(parentId, id))}>
-            x
-          </button>
-        </div>
+        <NoteControls parentId={parentId} id={id} />
         <NoteText id={id} text={text} />
         <div ref={drag} className={styles.handle}>
           <NoteHandle />
         </div>
-
       </div>
     </div>
   );

@@ -1,8 +1,11 @@
 import { useDragLayer } from 'react-dnd';
 
-import styles from './DragLayer.module.css';
+import styles from './NoteDragLayer.module.css';
 
-export default function DragLayer() {
+import NoteControls from './NoteControls';
+import NoteText from './NoteText';
+
+export default function NoteDragLayer() {
   const { isDragging, item, current, diff } = useDragLayer(
     monitor => ({
       isDragging: monitor.isDragging(),
@@ -16,22 +19,20 @@ export default function DragLayer() {
     return null;
   }
 
-  const background = item.color;
+  const background = item.color ?? '#ffffff';
   const left = `${diff?.x ?? 0}px`;
   const top = `${current?.y ?? 0}px`;
 
-  const style = {
+  const noteStyle = {
     background,
     left,
     top,
   };
 
-  //??? add real note
   return (
-    <div className={styles.main} style={style}>
-      <div>PREVIEW</div>
-      <div>{`${item.id.slice(0, 4)}`}</div>
-      <div>{item.text}</div>
+    <div className={styles.note} style={noteStyle}>
+      <NoteControls />
+      <NoteText id={item.id} text={item.text} />
     </div>
   );
 }

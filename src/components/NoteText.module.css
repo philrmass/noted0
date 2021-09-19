@@ -1,11 +1,20 @@
 .text {
+  flex-grow: 1;
   height: calc(3.6em + 2 * var(--size1));
+  padding: var(--size1) var(--size1);
   line-height: 1.2em;
   user-select: none;
+  overflow: hidden;
 }
 
-/*
+.textarea {
   flex-grow: 1;
-  padding: var(--size1) var(--size1);
+  padding: var(--size1);
+  border: 0;
+  background: transparent;
+  font-family: var(--fontFamily);
+  font-size: 1em;
   overflow: hidden;
-*/
+  resize: none;
+}
+

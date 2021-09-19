@@ -7,7 +7,7 @@ const defaultState = {
   editingId: null,
   parentId: loadItem(parentIdKey, 'root'),
   //??? remove after testing
-  //editingId: '0db22f4a-cfd3-46d6-8292-2eca5266d444',
+  //editingId: '0473d95a-7651-45ae-8ca7-8cb9b591846b'
 };
 
 //saveItem(parentIdKey, parentId); //??? save parent when changed

@@ -30,7 +30,13 @@ export default function NoteText({ id, text, setText }) {
   };
 
   if (isEditing) {
-    return <div>EDIT</div>;
+    return (
+      <textarea
+        className={styles.textarea}
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+    );
   }
 
   return (

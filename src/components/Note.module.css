@@ -1,9 +1,22 @@
 .note {
   height: calc(3.6em + 2 * var(--size1));
   line-height: 1.2em;
+  user-select: none;
+}
+
+.dragging {
+  margin-top: calc(3.6em + 2 * var(--size1));
+  height: 0;
+}
+
+.content {
+  height: 100%;
   display: flex;
   justify-content: space-between;
-  user-select: none;
+}
+
+.hidden {
+  display: none;
 }
 
 .buttons {

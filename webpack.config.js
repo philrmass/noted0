@@ -42,6 +42,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   devServer: {
+    clientLogLevel: 'none',
     contentBase: './dist',
     watchContentBase: true,
   },

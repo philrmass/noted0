@@ -10,7 +10,7 @@ const defaultState = {
   //editingId: '0db22f4a-cfd3-46d6-8292-2eca5266d444',
 };
 
-//saveItem(parentIdKey, parentId);
+//saveItem(parentIdKey, parentId); //??? save parent when changed
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
     case EDIT_NOTE: {

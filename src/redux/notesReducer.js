@@ -45,7 +45,6 @@ export default function reducer(state = defaultState, action) {
         },
       };
 
-      console.warn('move', from, to, action.fromId.slice(0, 4), action.toId.slice(0, 4));
       saveItem(allKey, all);
       return {
         ...state,

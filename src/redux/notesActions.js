@@ -17,8 +17,8 @@ export function moveNote(parentId, fromId, toId) {
   return { type: MOVE_NOTE, parentId, fromId, toId };
 }
 
-export function removeNote(id, parentId) {
-  return { type: REMOVE_NOTE, id, parentId };
+export function removeNote(parentId, id) {
+  return { type: REMOVE_NOTE, parentId, id };
 }
 
 export function revertNote() {

@@ -1,123 +1,60 @@
 import { useDispatch } from 'react-redux';
 import { useDrag, useDrop } from 'react-dnd';
+import cln from 'classnames';
 
 import { removeNote, moveNote } from '../redux/notesActions';
 import styles from './Note.module.css';
 
 import Handle from './Handle';
 
-export default function DraggableNote({ index, parentId, note, setGap }) {
+export default function Note({ parentId, id, color, text }) {
+  const type = 'Note';
   const dis = useDispatch();
 
-  //??? remove index
   const [{ isDragging }, drag] = useDrag(() => ({
-    type: 'Note',
-    item: {
-      index,
-      id: note.id,
-      color: note.color,
-      text: note.text,
-    },
+    type,
+    item: { id, color, text },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
   }), []);
 
-  const [{ isOver }, drop] = useDrop({
-    accept: 'Note',
-    collect: (monitor) => ({
-      isOver: monitor.isOver(),
-    }),
-    drop(item) {
-      console.warn('drop', item.id.slice(0, 4), 'on', note.id.slice(0, 4));
-    },
-    hover(item/*, monitor*/) {
-      /*
-      const isOver = monitor.isOver();
-      if (item.id === note.id) {
-        console.log('isOver', isOver, null);
-        setGap(null);
-      } else {
-        console.log('isOver', isOver, index);
-        setGap(index);
+  const [, drop] = useDrop({
+    accept: type,
+    hover(item) {
+      if (item.id !== id) {
+        dis(moveNote(parentId, item.id, id));
       }
-      */
-      if (item.id === note.id) {
-        console.warn('no-move');
-        return;
-      }
-
-      console.warn('MOVE', item.id.slice(0, 4), 'on', note.id.slice(0, 4));
-      dis(moveNote(parentId, item.id, note.id));
-
-      //console.warn(`[${item.index}] -> [${index}] (${note.id.slice(0, 4)}) -> [${item.index}]`);
-
-      //const clientOffset = monitor.getClientOffset();
-      //??? restore, set index for space
-      /*
-      if (!ref.current) {
-        return;
-      }
-      const dragIndex = item.index;
-      const hoverIndex = index;
-
-      // Don't replace items with themselves
-      if (dragIndex === hoverIndex) {
-        return;
-      }
-
-      // Determine rectangle on screen
-      const hoverBoundingRect = ref.current?.getBoundingClientRect();
-
-      // Get vertical middle
-      const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-
-      // Determine mouse position
-      const clientOffset = monitor.getClientOffset();
-
-      // Get pixels to the top
-      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-
-      // Only perform the move when the mouse has crossed half of the items height
-      // When dragging downwards, only move when the cursor is below 50%
-      // When dragging upwards, only move when the cursor is above 50%
-      // Dragging downwards
-      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-        return;
-      }
-      // Dragging upwards
-      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-        return;
-      }
-      // Time to actually perform the action
-      */
-
-      //moveCard(item.id);
-      //item.index = hoverIndex;
     },
   });
 
-  const background = note.color ?? '#ffffff';
-  const opacity = isOver ? '0.4' : '1';
-  const style = { background, opacity };
+  const contentClasses = cln({
+    [styles.content]: true,
+    [styles.hidden]: isDragging,
+  });
+  const noteClasses = cln({
+    [styles.note]: true,
+    [styles.dragging]: isDragging,
+  });
+  const background = color ?? '#ffffff';
+  const noteStyle = { background };
 
   return (
-    <div ref={drop} className={styles.note} style={style}>
-      <div className={styles.buttons}>
-        <button className={styles.button} onClick={() => dis(removeNote(note.id, parentId))}>
-          x
-        </button>
-      </div>
-      <div
-        className={styles.text}
-      >
-        {`[${note.id.slice(0, 4)}] (${index}) `}
-        {note.text}
-        {isDragging ? ' [DRAG]' : ''}
-        {isOver ? ' [OVER]' : ''}
-      </div>
-      <div ref={drag} className={styles.handle}>
-        <Handle />
+    <div ref={drop} className={noteClasses} style={noteStyle}>
+      <div className={contentClasses}>
+        <div className={styles.buttons}>
+          <button className={styles.button} onClick={() => dis(removeNote(parentId, id))}>
+            x
+          </button>
+        </div>
+        <div
+          className={styles.text}
+        >
+          {text}
+        </div>
+        <div ref={drag} className={styles.handle}>
+          <Handle />
+        </div>
       </div>
     </div>
   );

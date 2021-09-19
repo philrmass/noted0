@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import { DndProvider } from 'react-dnd';
-//import { HTML5Backend } from 'react-dnd-html5-backend'; //??? remove or restore
 import { TouchBackend } from 'react-dnd-touch-backend';
 
 import version from '../version';

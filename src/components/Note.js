@@ -5,7 +5,8 @@ import cln from 'classnames';
 import { removeNote, moveNote } from '../redux/notesActions';
 import styles from './Note.module.css';
 
-import Handle from './Handle';
+import NoteHandle from './NoteHandle';
+import NoteText from './NoteText';
 
 export default function Note({ parentId, id, color, text }) {
   const type = 'Note';
@@ -47,14 +48,11 @@ export default function Note({ parentId, id, color, text }) {
             x
           </button>
         </div>
-        <div
-          className={styles.text}
-        >
-          {text}
-        </div>
+        <NoteText id={id} text={text} />
         <div ref={drag} className={styles.handle}>
-          <Handle />
+          <NoteHandle />
         </div>
+
       </div>
     </div>
   );

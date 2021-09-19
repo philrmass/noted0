@@ -6,7 +6,7 @@ import { updateNote } from '../redux/notesActions';
 import styles from './Editor.module.css';
 
 import Colors from './Colors';
-import Handle from './Handle';
+import NoteHandle from './NoteHandle';
 
 function Editor() {
   const [text, setText] = useState('');
@@ -55,7 +55,7 @@ function Editor() {
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          <Handle />
+          <NoteHandle />
         </div>
         <div className={styles.buttons}>
           <button

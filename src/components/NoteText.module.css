@@ -1,0 +1,11 @@
+.text {
+  height: calc(3.6em + 2 * var(--size1));
+  line-height: 1.2em;
+  user-select: none;
+}
+
+/*
+  flex-grow: 1;
+  padding: var(--size1) var(--size1);
+  overflow: hidden;
+*/

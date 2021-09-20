@@ -1,6 +1,12 @@
 node_modules/
 dist/*
+!dist/favicon.ico
 !dist/index.html
+!dist/logo192.png
+!dist/logo512.png
+!dist/logoApple.png
+!dist/logoMaskable.png
+!dist/manifest.json
 *.swp
 _*
 .DS_STORE

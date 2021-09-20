@@ -10,8 +10,8 @@
 }
 
 .button {
-  width: var(--size4);
-  height: var(--size4);
+  width: var(--size3);
+  height: var(--size3);
   border-radius: 50%;
   background: var(--shade);
 }

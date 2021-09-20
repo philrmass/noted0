@@ -1,6 +1,23 @@
 .handle {
   width: var(--handleWidth);
   height: var(--noteHeight);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: var(--size0);
   background: var(--shadeLight);
   cursor: move;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #0008;
+  background: var(--shade);
 }

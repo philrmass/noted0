@@ -1,7 +1,7 @@
 export function getSpectrumColors() {
-  const hues = [0, 28, 48, 75, 108, 150, 196, 230, 277, 310];
+  const hues = [0, 30, 60, 120, 196, 230, 277, 310];
   const sats = [100, 100, 100];
-  const lights = [85, 78, 70];
+  const lights = [88, 83, 78];
 
   const colors = [];
   for (const hue of hues) {
@@ -15,11 +15,11 @@ export function getColors() {
   const spectrums = getSpectrumColors();
   const all = [
     'hsl(0, 0%, 100%)',
-    'hsl(0, 0%, 83%)',
-    'hsl(0, 0%, 65%)',
+    'hsl(0, 0%, 82%)',
+    'hsl(0, 0%, 70%)',
+    'hsl(20, 30%, 85%)',
     'hsl(20, 30%, 75%)',
     'hsl(20, 30%, 65%)',
-    'hsl(20, 30%, 55%)',
     ...spectrums,
   ];
 

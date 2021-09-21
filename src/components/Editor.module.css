@@ -21,6 +21,7 @@
   margin: var(--size2);
   background: var(--button);
   font-size: 10px;
+  user-select: none;
   fill: var(--textButton);
 }
 

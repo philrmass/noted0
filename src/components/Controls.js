@@ -22,7 +22,9 @@ function Controls() {
         className={cln(styles.button, styles.add)}
         onClick={() => add()}
       >
-        +
+        <svg viewBox='-50 -50 100 100'>
+          <path d='M3 3 v14 h-6 v-14 h-14 v-6 h14 v-14 h6 v14 h14 v6 h-14' />
+        </svg>
       </button>
       {removedNote &&
       <button
@@ -32,6 +34,13 @@ function Controls() {
         R
       </button>
       }
+      {/*
+      <div className={styles.big}>
+        <svg viewBox='-50 -50 100 100'>
+          <path d='M5 0 l16 -16 l-5 -5 l-16 16 l-16 -16 l-5 5 l16 16 l-16 16 l5 5 l16 -16 l16 16 l5 -5 l-16 -16' />
+        </svg>
+      </div>
+      */}
     </>
   );
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import cln from 'classnames';
 
 import { editNote } from '../redux/uiActions';
 import { updateNote } from '../redux/notesActions';
@@ -39,37 +40,33 @@ function Editor() {
 
   return (
     <main className={styles.main}>
-      <div className={styles.space} onClick={() => setShowColor(true)}></div>
-      <div>
-        <div className={styles.buttons}>
-          <button
-            className={styles.button}
-            onClick={() => setShowColor(true)}
-          >
-            Color
-          </button>
-        </div>
-        <div style={style} className={styles.note}>
-          <NoteControls />
-          <NoteText text={text} setText={setText} />
-          <NoteHandle />
-        </div>
-        <div className={styles.buttons}>
-          <button
-            className={styles.button}
-            onClick={() => dis(editNote(null))}
-          >
-            Cancel
-          </button>
-          <button
-            className={styles.button}
-            onClick={save}
-          >
-            Save
-          </button>
-        </div>
+      <button
+        className={cln(styles.bigButton, styles.color)}
+        onClick={() => setShowColor(true)}
+      >
+        Set Color
+      </button>
+      <div style={style} className={styles.note}>
+        <NoteControls />
+        <NoteText text={text} setText={setText} />
+        <NoteHandle />
       </div>
+      <button
+        className={cln(styles.bigButton, styles.cancel)}
+        onClick={() => dis(editNote(null))}
+      >
+        Cancel
+      </button>
+      <button
+        className={cln(styles.bigButton, styles.save)}
+        onClick={save}
+      >
+        Save
+      </button>
+      {/*
+        </div>
       <div className={styles.space} onClick={() => save()}></div>
+      */}
     </main>
   );
 }

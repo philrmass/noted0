@@ -4,34 +4,37 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--background);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: var(--background);
 }
 
-.space {
-  flex-grow: 1;
-}
-
-.buttons {
-  padding: var(--size2) var(--size1);
+.note {
+  flex-shrink: 0;
+  margin: var(--size4) 0;
   display: flex;
-  justify-content: flex-end;
 }
 
-.button {
-  border-radius: var(--radius);
-  padding: var(--size1) var(--size2);
+.bigButton {
+  border-radius: var(--radiusLarge);
+  margin: var(--size2);
   background: var(--button);
   color: var(--textButton);
 }
 
-.button:nth-child(n+2) {
-  margin-left: var(--size1);
+.color {
+  flex-grow: 2;
 }
 
-.note {
-  display: flex;
+.cancel {
+  flex-grow: 1;
 }
 
+.save {
+  flex-grow: 2;
+}
+
+.bigButton + .bigButton {
+  margin-top: 0;
+}

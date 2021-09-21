@@ -44,7 +44,9 @@ function Editor() {
         className={cln(styles.bigButton, styles.color)}
         onClick={() => setShowColor(true)}
       >
-        Set Color
+        <svg viewBox='0 0 25.5 8.5'>
+          <text x='0' y='8'>Color</text>
+        </svg>
       </button>
       <div style={style} className={styles.note}>
         <NoteControls />
@@ -55,18 +57,18 @@ function Editor() {
         className={cln(styles.bigButton, styles.cancel)}
         onClick={() => dis(editNote(null))}
       >
-        Cancel
+        <svg viewBox='0 0 31 8.5'>
+          <text x='0' y='8'>Cancel</text>
+        </svg>
       </button>
       <button
         className={cln(styles.bigButton, styles.save)}
         onClick={save}
       >
-        Save
+        <svg viewBox='0 0 21.6 8.5'>
+          <text x='0' y='8'>Save</text>
+        </svg>
       </button>
-      {/*
-        </div>
-      <div className={styles.space} onClick={() => save()}></div>
-      */}
     </main>
   );
 }

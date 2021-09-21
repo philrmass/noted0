@@ -12,19 +12,20 @@
 
 .note {
   flex-shrink: 0;
-  margin: var(--size4) 0;
   display: flex;
 }
 
 .bigButton {
+  padding: var(--size2) 30%;
   border-radius: var(--radiusLarge);
   margin: var(--size2);
   background: var(--button);
-  color: var(--textButton);
+  font-size: 10px;
+  fill: var(--textButton);
 }
 
 .color {
-  flex-grow: 2;
+  flex-grow: 3;
 }
 
 .cancel {
@@ -32,7 +33,7 @@
 }
 
 .save {
-  flex-grow: 2;
+  flex-grow: 3;
 }
 
 .bigButton + .bigButton {

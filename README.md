@@ -9,8 +9,7 @@ Deployed at [https://philrmass.github.io/noted/](https://philrmass.github.io/not
 - `npm run start` to start the dev server
 
 ### To Do
-- make big buttons in editor using svg
-- make svg button icons (+, x), put in index.html
+- make svg button icons (+, x, children), put in index.html
 - PWA and service worker
 - select note as parent on click, show full and children
 - add children icon

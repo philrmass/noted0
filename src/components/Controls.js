@@ -18,6 +18,38 @@ function Controls() {
 
   return (
     <>
+      <div className={styles.test}>
+
+        <div className={styles.testBox}>
+          <div className={styles.testIcon}>
+            <svg viewBox='0 0 50 50'>
+              <path d='M0 0, h50 v20 h-10 v-10 h-30 v30 h30 v-10 h10 v20 h-50 v-50' />
+            </svg>
+          </div>
+        </div>
+
+        <div className={styles.testBox}>
+          <div className={styles.testIcon}>
+            <svg viewBox='0 0 1 1' style={{ display: 'block' }}>
+              <use href='#yo' />
+            </svg>
+          </div>
+        </div>
+
+        <div className={styles.testBox}>
+          <svg viewBox='0 0 50 50' className={styles.testIcon}>
+            <path d='M0 0, h50 v20 h-10 v-10 h-30 v30 h30 v-10 h10 v20 h-50 v-50' />
+          </svg>
+        </div>
+
+        <div className={styles.testBox}>
+          <svg viewBox='0 0 1 1' className={styles.testIcon}>
+            <use href='#yo' />
+          </svg>
+        </div>
+
+      </div>
+
       <button
         className={cln(styles.button, styles.add)}
         onClick={() => add()}

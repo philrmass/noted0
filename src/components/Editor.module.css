@@ -15,7 +15,7 @@
   display: flex;
 }
 
-.bigButton {
+.button {
   padding: var(--size2) 30%;
   border-radius: var(--radiusLarge);
   margin: var(--size2);
@@ -37,6 +37,6 @@
   flex-grow: 3;
 }
 
-.bigButton + .bigButton {
+.button + .button {
   margin-top: 0;
 }

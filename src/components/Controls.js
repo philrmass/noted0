@@ -34,13 +34,6 @@ function Controls() {
         R
       </button>
       }
-      {/*
-      <div className={styles.big}>
-        <svg viewBox='-50 -50 100 100'>
-          <path d='M5 0 l16 -16 l-5 -5 l-16 16 l-16 -16 l-5 5 l16 16 l-16 16 l5 5 l16 -16 l16 16 l5 -5 l-16 -16' />
-        </svg>
-      </div>
-      */}
     </>
   );
 }

@@ -20,3 +20,10 @@
 .button:active {
   background: var(--shade);
 }
+
+.icon {
+  margin-top: var(--size1);
+  width: var(--size3);
+  height: var(--size3);
+  fill: var(--text);
+}

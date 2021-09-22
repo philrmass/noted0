@@ -7,26 +7,26 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: var(--size1);
+  padding: var(--size2);
   background: var(--background);
 }
 
 .colors {
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: var(--size1);
 }
 
-.buttons {
-  margin-top: var(--size1);
-  display: flex;
-  justify-content: flex-end;
+.color {
+  border-radius: var(--radius);
 }
 
 .button {
-  border-radius: var(--radius);
-  padding: var(--size1) var(--size2);
+  padding: var(--size2) 30%;
+  border-radius: var(--radiusLarge);
+  margin-top: var(--size2);
   background: var(--button);
-  color: var(--textButton);
+  fill: var(--textButton);
+  font-size: 10px;
 }

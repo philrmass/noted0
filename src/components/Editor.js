@@ -41,7 +41,7 @@ function Editor() {
   return (
     <main className={styles.main}>
       <button
-        className={cln(styles.bigButton, styles.color)}
+        className={cln(styles.button, styles.color)}
         onClick={() => setShowColor(true)}
       >
         <svg viewBox='0 0 25.5 8.5'>
@@ -54,7 +54,7 @@ function Editor() {
         <NoteHandle />
       </div>
       <button
-        className={cln(styles.bigButton, styles.cancel)}
+        className={cln(styles.button, styles.cancel)}
         onClick={() => dis(editNote(null))}
       >
         <svg viewBox='0 0 31 8.5'>
@@ -62,7 +62,7 @@ function Editor() {
         </svg>
       </button>
       <button
-        className={cln(styles.bigButton, styles.save)}
+        className={cln(styles.button, styles.save)}
         onClick={save}
       >
         <svg viewBox='0 0 21.6 8.5'>

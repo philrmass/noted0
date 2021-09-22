@@ -16,6 +16,7 @@ function Colors({ setColor, onClose }) {
       return (
         <li
           key={color}
+          className={styles.color}
           style={style}
           onClick={() => pickColor(color)}
         >
@@ -29,14 +30,11 @@ function Colors({ setColor, onClose }) {
       <ul className={styles.colors}>
         {buildColors()}
       </ul>
-      <div className={styles.buttons}>
-        <button
-          className={styles.button}
-          onClick={onClose}
-        >
-          Cancel
-        </button>
-      </div>
+      <button className={styles.button} onClick={onClose}>
+        <svg viewBox='0 0 31 8.5'>
+          <text x='0' y='8'>Cancel</text>
+        </svg>
+      </button>
     </main>
   );
 }

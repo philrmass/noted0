@@ -3,12 +3,12 @@ function isDev() {
 }
 
 function filePaths(files) {
-  const base = isDev() ? '/' : '/weight-tracker/';
+  const base = isDev() ? '/' : '/noted/';
   return files.map((file) => `${base}${file}`);
 }
 
 function getCacheName() {
-  return 'weight-tracker-cache';
+  return 'noted-cache';
 }
 
 function getCacheFiles() {

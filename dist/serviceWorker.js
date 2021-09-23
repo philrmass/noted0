@@ -1,14 +1,16 @@
+const appName = 'noted';
+
 function isDev() {
   return self.location.hostname === 'localhost';
 }
 
 function filePaths(files) {
-  const base = isDev() ? '/' : '/noted/';
+  const base = isDev() ? '/' : `/${appName}/`;
   return files.map((file) => `${base}${file}`);
 }
 
 function getCacheName() {
-  return 'noted-cache';
+  return `${appName}-cache`;
 }
 
 function getCacheFiles() {

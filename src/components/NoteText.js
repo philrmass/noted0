@@ -1,17 +1,20 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { editNote } from '../redux/uiActions';
+import { editNote, selectNote } from '../redux/uiActions';
 import styles from './NoteText.module.css';
 
 export default function NoteText({ id, text, setText }) {
+  const [start, setStart] = useState(0);
   const [_, setTimer] = useState(null);
   const [y, setY] = useState(null);
   const dis = useDispatch();
   const isEditing = Boolean(setText);
+  const shortPressMs = 200;
   const longPressMs = 500;
 
   const handleStart = (e) => {
+    setStart(Date.now());
     const ey = e.clientY ?? e.touches[0].clientY;
     setY(ey);
     setTimer((timerId) => {
@@ -24,12 +27,16 @@ export default function NoteText({ id, text, setText }) {
 
   const handleEnd = (e) => {
     e.preventDefault();
+    const time = Date.now() - start;
     setTimer((timerId) => {
       if (timerId) {
         clearTimeout(timerId);
       }
       return null;
     });
+    if (time < shortPressMs) {
+      setTimeout(() => dis(selectNote(id)), 0);
+    }
   };
 
   const handleMove = (e) => {

@@ -10,8 +10,8 @@ Deployed at [https://philrmass.github.io/noted/](https://philrmass.github.io/not
 - `npm run deploy` to deploy to gh pages
 
 ### To Do
-- make default uuids persistent
-- create revert, back, and menu icons
+- create revert, back, and menu icons, use them
+- make set uuids for default notes
 - add menu button and menu overlay
 - save notes to file
 - load notes from file

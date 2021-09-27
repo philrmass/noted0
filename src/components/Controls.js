@@ -22,6 +22,13 @@ function Controls() {
 
   return (
     <>
+      <div className={styles.iconTest}>
+        <svg viewBox='0 0 1 1' className={styles.icon}>
+          <svg id="back" viewBox="0 0 100 100">
+            <path d="M53 53 v14 h-6 v-14 h-14 v-6 h14 v-14 h6 v14 h14 v6 h-14" />
+          </svg>
+        </svg>
+      </div>
       <button className={cln(styles.button, styles.add)} onClick={() => add()}>
         <Icon name='plus' />
       </button>

@@ -1,0 +1,23 @@
+.notes {
+  margin-bottom: var(--noteHeight);
+}
+
+.parent {
+  min-height: var(--noteHeight);
+  margin: var(--size1) var(--size0);
+  display: flex;
+}
+
+.handle {
+  flex-shrink: 0;
+  width: var(--handleWidth);
+  background: var(--shadeLight);
+}
+
+.text {
+  flex-grow: 1;
+  padding: var(--size1);
+  user-select: none;
+  white-space: pre-wrap;
+}
+

@@ -17,6 +17,9 @@
 }
 
 .back {
+  position: fixed;
+  top: var(--size1);
+  left: var(--size1);
 }
 
 .menu {

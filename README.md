@@ -10,11 +10,8 @@ Deployed at [https://philrmass.github.io/noted/](https://philrmass.github.io/not
 - `npm run deploy` to deploy to gh pages
 
 ### To Do
-- select note as parent on click, show full parent and children, disabled
-- set actual children icon, with blank placeholder
-- create revert, back, and menu icons, set revert on button
-- add back button if parentIds.length > 1
-- clear parent note if back clicked
+- make default uuids persistent
+- create revert, back, and menu icons
 - add menu button and menu overlay
 - save notes to file
 - load notes from file

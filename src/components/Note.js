@@ -9,9 +9,13 @@ import NoteControls from './NoteControls';
 import NoteHandle from './NoteHandle';
 import NoteText from './NoteText';
 
-export default function Note({ parentId, id, color, text }) {
+export default function Note({ parentId, note }) {
   const type = 'Note';
   const dis = useDispatch();
+  const id = note.id;
+  const color = note.color;
+  const text = note.text;
+  const hasChildren = note.children && note.children.length > 0;
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type,
@@ -44,7 +48,7 @@ export default function Note({ parentId, id, color, text }) {
   return (
     <div ref={drop} className={noteClasses} style={noteStyle}>
       <div className={contentClasses}>
-        <NoteControls parentId={parentId} id={id} />
+        <NoteControls parentId={parentId} id={id} hasChildren={hasChildren} />
         <NoteText id={id} text={text} />
         <div ref={drag}>
           <NoteHandle />

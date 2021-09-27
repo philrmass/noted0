@@ -5,20 +5,18 @@ import styles from './NoteControls.module.css';
 
 import Icon from './Icon';
 
-export default function NoteHandle({ parentId, id }) {
+export default function NoteHandle({ parentId, id, hasChildren }) {
   const dis = useDispatch();
-  const hasChildren = Boolean(Number(id && id.slice(-1))); //??? fix
+  const iconName = hasChildren ? 'children' : 'blank';
 
   return (
     <div className={styles.controls}>
       <button className={styles.button} onClick={() => dis(removeNote(parentId, id))}>
         <Icon name='cross' />
       </button>
-      {hasChildren &&
       <div className={styles.icon}>
-        <Icon name='children' />
+        <Icon name={iconName} />
       </div>
-      }
     </div>
   );
 }

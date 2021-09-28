@@ -18,15 +18,18 @@
 
 .back {
   position: fixed;
-  top: var(--size1);
+  bottom: var(--size1);
   left: var(--size1);
 }
 
 .menu {
+  position: fixed;
+  top: var(--size1);
+  right: var(--size1);
 }
 
 .revert {
   position: fixed;
-  bottom: var(--size1);
+  top: var(--size1);
   left: var(--size1);
 }

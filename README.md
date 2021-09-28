@@ -10,11 +10,8 @@ Deployed at [https://philrmass.github.io/noted/](https://philrmass.github.io/not
 - `npm run deploy` to deploy to gh pages
 
 ### To Do
-- create revert, back, and menu icons, use them
-- make set uuids for default notes
-- add menu button and menu overlay
+- add menu overlay
 - save notes to file
 - load notes from file
 - save data monthly with prompt on editor close
-- use real colors for default notes, improve the text
 - handle deleting note with children, confirm, then delete all

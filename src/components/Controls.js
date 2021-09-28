@@ -22,17 +22,20 @@ function Controls() {
 
   return (
     <>
+      <button className={cln(styles.button, styles.menu)} onClick={() => console.warn('MENU')}>
+        <Icon name='menu' />
+      </button>
       <button className={cln(styles.button, styles.add)} onClick={() => add()}>
         <Icon name='plus' />
       </button>
       {removedNote &&
       <button className={cln(styles.button, styles.revert)} onClick={() => dis(revertNote())}>
-        R
+        <Icon name='revert' />
       </button>
       }
       {isNotRoot &&
       <button className={cln(styles.button, styles.back)} onClick={() => dis(clearNote())}>
-        B
+        <Icon name='back' />
       </button>
       }
     </>

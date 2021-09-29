@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cln from 'classnames';
 
@@ -6,8 +7,10 @@ import { clearNote, editNote } from '../redux/uiActions';
 import styles from './Controls.module.css';
 
 import Icon from './Icon';
+import Menu from './Menu';
 
 function Controls() {
+  const [isOpen, setIsOpen] = useState(false);
   const dis = useDispatch();
   const parentIds = useSelector(state => state.ui.parentIds);
   const parentId = parentIds[parentIds.length - 1] ?? 'root';
@@ -22,7 +25,7 @@ function Controls() {
 
   return (
     <>
-      <button className={cln(styles.button, styles.menu)} onClick={() => console.warn('MENU')}>
+      <button className={cln(styles.button, styles.menu)} onClick={() => setIsOpen(true)}>
         <Icon name='menu' />
       </button>
       <button className={cln(styles.button, styles.add)} onClick={() => add()}>
@@ -37,6 +40,9 @@ function Controls() {
       <button className={cln(styles.button, styles.back)} onClick={() => dis(clearNote())}>
         <Icon name='back' />
       </button>
+      }
+      {isOpen &&
+        <Menu close={() => setIsOpen(false)} />
       }
     </>
   );

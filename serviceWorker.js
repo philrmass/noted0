@@ -16,7 +16,7 @@ function getCacheName() {
 function getCacheFiles() {
   const cacheFiles = [
     '',
-    'index.html',
+    //'index.html', ??? restore
     'favicon.ico',
     'logo192.png',
     'logo512.png',

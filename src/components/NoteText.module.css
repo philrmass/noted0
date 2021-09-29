@@ -15,6 +15,6 @@
   background: transparent;
   font-family: var(--fontFamily);
   font-size: 1em;
-  overflow: hidden;
+  overflow-y: scroll;
   resize: none;
 }

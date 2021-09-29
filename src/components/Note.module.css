@@ -1,7 +1,7 @@
 .note {
   margin-top: var(--size0);
-  margin-right: var(--size0);
-  margin-left: var(--size0);
+  margin-right: var(--size1);
+  margin-left: var(--size1);
   user-select: none;
 }
 

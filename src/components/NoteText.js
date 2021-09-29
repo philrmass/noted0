@@ -8,15 +8,19 @@ export default function NoteText({ id, text, setText }) {
   const [start, setStart] = useState(0);
   const [_, setTimer] = useState(null);
   const [y, setY] = useState(null);
+  const [moveY, setMoveY] = useState(0);
   const dis = useDispatch();
   const isEditing = Boolean(setText);
   const shortPressMs = 200;
   const longPressMs = 500;
+  const moveMax = 40;
 
   const handleStart = (e) => {
-    setStart(Date.now());
     const ey = e.clientY ?? e.touches[0].clientY;
+
+    setStart(Date.now());
     setY(ey);
+    setMoveY(0);
     setTimer((timerId) => {
       if (timerId) {
         clearTimeout(timerId);
@@ -26,25 +30,27 @@ export default function NoteText({ id, text, setText }) {
   };
 
   const handleEnd = (e) => {
-    e.preventDefault();
     const time = Date.now() - start;
+
+    e.preventDefault();
     setTimer((timerId) => {
       if (timerId) {
         clearTimeout(timerId);
       }
       return null;
     });
-    if (time < shortPressMs) {
+
+    if (time < shortPressMs && moveY <= moveMax) {
       setTimeout(() => dis(selectNote(id)), 0);
     }
   };
 
   const handleMove = (e) => {
     const ey = e.clientY ?? e.touches[0].clientY;
-    const moveY = Math.abs(ey - y);
-    const moveMin = 50;
+    const dy = Math.abs(ey - y);
+    setMoveY(dy);
 
-    if (moveY > moveMin) {
+    if (dy > moveMax) {
       setTimer((timerId) => {
         if (timerId) {
           clearTimeout(timerId);
@@ -57,6 +63,7 @@ export default function NoteText({ id, text, setText }) {
   if (isEditing) {
     return (
       <textarea
+        autoFocus
         className={styles.textarea}
         value={text}
         onChange={(e) => setText(e.target.value)}

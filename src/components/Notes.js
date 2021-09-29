@@ -1,10 +1,12 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { editNote } from '../redux/uiActions';
 import styles from './Notes.module.css';
 
 import Note from './Note';
 
 export default function Notes() {
+  const dis = useDispatch();
   const allNotes = useSelector(state => state.notes.all);
   const parentIds = useSelector(state => state.ui.parentIds);
   const parentId = parentIds[parentIds.length - 1] ?? 'root';
@@ -16,15 +18,26 @@ export default function Notes() {
   const background = parent?.color ?? '#ffffff';
   const parentStyle = { background };
 
-  return (
-    <ul className={styles.notes}>
-      {showParent &&
+  const buildParent = () => {
+    if (!showParent) {
+      return <div className={styles.parentSpacer}></div>;
+    }
+
+    return (
       <div className={styles.parent} style={parentStyle}>
         <div className={styles.handle}></div>
-        <div className={styles.text}>{parent?.text}</div>
+        <div className={styles.text} onClick={() => dis(editNote(parentId))}>
+          {parent?.text}
+        </div>
         <div className={styles.handle}></div>
       </div>
-      }
+    );
+  };
+
+  return (
+    <ul className={styles.notes}>
+      {buildParent()}
+      
       {notes.map((note) => (
         <li key={note.id}>
           <Note parentId={parentId} note={note} />

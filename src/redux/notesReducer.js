@@ -106,7 +106,7 @@ export default function reducer(state = defaultState, action) {
 
 function addNote(all, note, parentId) {
   const parent = all[parentId];
-  const children = [note.id, ...parent.children];
+  const children = [...parent.children, note.id];
 
   return {
     ...all,

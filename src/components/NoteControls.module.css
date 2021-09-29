@@ -27,3 +27,9 @@
   height: var(--size3);
   fill: var(--text);
 }
+
+.count {
+  display: flex;
+  justify-content: center;
+  color: var(--textLight);
+}

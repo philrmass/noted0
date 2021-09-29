@@ -5,9 +5,16 @@ import styles from './NoteControls.module.css';
 
 import Icon from './Icon';
 
-export default function NoteHandle({ parentId, id, hasChildren }) {
+export default function NoteHandle({ parentId, id, childCount }) {
   const dis = useDispatch();
-  const iconName = hasChildren ? 'children' : 'blank';
+
+  const buildChildren = () => {
+    if (!childCount) {
+      return <div></div>;
+    }
+
+    return <div className={styles.count}>{childCount}</div>;
+  };
 
   return (
     <div className={styles.controls}>
@@ -15,7 +22,7 @@ export default function NoteHandle({ parentId, id, hasChildren }) {
         <Icon name='cross' />
       </button>
       <div className={styles.icon}>
-        <Icon name={iconName} />
+        {buildChildren()} 
       </div>
     </div>
   );

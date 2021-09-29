@@ -67,9 +67,9 @@ export function getNotesDefault() {
     },
     [uuids[5]]: {
       at,
-      children: [...uuids.slice(5, 7)],
+      children: [...uuids.slice(6)],
       color: colors[15],
-      text: 'The icon on the bottom left of the note shows that it has child notes. Click the note to see them',
+      text: 'The number on the bottom left of the note is the count of child notes. Click the note to see them',
       id: uuids[5],
     },
     [uuids[6]]: {

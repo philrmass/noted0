@@ -1,7 +1,9 @@
 :root {
   --background: #989898;
   --button: #585858;
+  --highlight: #ffffff;
   --text: #202020;
+  --textLight: #484848;
   --textButton: #fafafa;
   --shade: #00000020;
   --shadeLight: #00000018;

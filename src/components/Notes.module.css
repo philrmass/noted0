@@ -1,11 +1,17 @@
 .notes {
-  margin-bottom: var(--noteHeight);
+  margin-bottom: var(--size7);
+}
+
+.parentSpacer {
+  height: var(--size7);
 }
 
 .parent {
   min-height: var(--noteHeight);
-  margin: var(--size1) var(--size0);
+  margin: var(--size0);
+  margin-bottom: var(--size1);
   display: flex;
+  border: var(--size0) solid var(--highlight);
 }
 
 .handle {

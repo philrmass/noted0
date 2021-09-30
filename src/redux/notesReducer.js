@@ -3,6 +3,7 @@ import {
   MOVE_NOTE,
   REMOVE_NOTE,
   REVERT_NOTE,
+  SET_NOTES,
   UPDATE_NOTE,
 } from './constants';
 import { getEmptyNote, getNotesDefault } from '../utilities/notes';
@@ -83,6 +84,13 @@ export default function reducer(state = defaultState, action) {
         removedParenId: null,
       };
     }
+    case SET_NOTES:
+      console.warn('SET_NOTES', action.all);
+      //saveItem(allKey, action.all);
+      return {
+        ...state,
+        //all: action.all,
+      };
     case UPDATE_NOTE: {
       const params = {
         text: action.text,

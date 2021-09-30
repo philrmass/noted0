@@ -88,3 +88,27 @@ export function getNotesDefault() {
     },
   };
 }
+
+export function importNotes(data) {
+  const isObject = data && typeof data === 'object';
+  const hasRoot = Boolean(data?.root);
+
+  if (!isObject) {
+    return { notes: null, message: 'Data is not an object' };
+  }
+
+  if (!hasRoot) {
+    return { notes: null, message: 'No root node found' };
+  }
+
+  const notes = importNoteTree(data, 'root');
+  const count = Object.keys(notes).length;
+  const message = `Imported ${count} notes. `;
+
+  return { notes, message };
+}
+
+export function importNoteTree(data, id) {
+  //??? implement
+  return {};
+}

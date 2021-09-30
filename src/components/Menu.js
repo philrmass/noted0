@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { saveData/*, loadData*/ } from '../utilities/files';
+import { saveData, loadData } from '../utilities/files';
+import { importNotes } from '../utilities/notes';
+import { setNotes } from '../redux/notesActions';
 import styles from './Menu.module.css';
-
-//??? navigator.share(data)
 
 export default function Menu({ close }) {
   const [status, setStatus] = useState('');
+  const dis = useDispatch();
   const allNotes = useSelector(state => state.notes.all);
 
   const save = async () => {
@@ -18,11 +19,14 @@ export default function Menu({ close }) {
     setStatus(`Saved ${count} notes to ${filePath}`);
   };
 
-  const load = () => {
-    //await loadData();
-    // validate
-    // setNotes
-    setStatus('LOAD');
+  const load = async () => {
+    const data = await loadData();
+    const { notes, message } = importNotes(data);
+
+    if (notes) {
+      dis(setNotes(notes));
+    }
+    setStatus(message);
   };
 
   const copy = async () => {
@@ -55,7 +59,6 @@ export default function Menu({ close }) {
             <svg viewBox='0 0 24 10.5'>
               <text x='0' y='8'>Copy</text>
             </svg>
-            <span id='notesData' className={styles.hidden}>{JSON.stringify(allNotes)}</span>
           </button>
           <div className={styles.status}>
             {status}
@@ -78,13 +81,4 @@ export function getSaveFilePath(at = Date.now()) {
   const date = `${when.getDate()}`.padStart(2, '0');
 
   return `notes_${year}_${month}_${date}.json`;
-}
-
-function copyToClipboard(id) {
-  const range = document.createRange();
-  range.selectNode(document.getElementById(id));
-  window.getSelection().removeAllRanges();
-  window.getSelection().addRange(range);
-  document.execCommand('copy');
-  window.getSelection().removeAllRanges();
 }

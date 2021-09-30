@@ -18,13 +18,13 @@
   background: var(--menu);
 }
 
-.buttons {
+.controls {
   margin-bottom: var(--size4);
 }
 
 .button {
   width: 100%;
-  padding: var(--size2) var(--size6);
+  padding: var(--size2) 30%;
   border-radius: var(--radiusLarge);
   background: var(--button);
   font-size: 10px;
@@ -34,4 +34,13 @@
 
 .button + .button {
   margin-top: var(--size2);
+}
+
+.status {
+  height: var(--noteHeight);
+  padding: var(--size1);
+  border: 1px solid var(--background);
+  border-radius: var(--radius);
+  margin-top: var(--size2);
+  overflow-y: scroll;
 }

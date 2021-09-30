@@ -15,7 +15,7 @@ export default function Menu({ close }) {
     const filePath = getSaveFilePath();
 
     await saveData(filePath, allNotes);
-    setStatus(`${count} notes saved to ${filePath}`);
+    setStatus(`Saved ${count} notes to ${filePath}`);
   };
 
   const load = () => {
@@ -26,8 +26,10 @@ export default function Menu({ close }) {
   };
 
   const copy = () => {
-    //??? copy notes JSON.stringify to buffer
-    setStatus('COPY');
+    const count = Object.keys(allNotes).length - 1;
+
+    copyToClipboard('notesData');
+    setStatus(`Copied ${count} notes to clipboard`);
   };
 
   return (
@@ -48,6 +50,7 @@ export default function Menu({ close }) {
             <svg viewBox='0 0 24 10.5'>
               <text x='0' y='8'>Copy</text>
             </svg>
+            <span id='notesData' className={styles.hidden}>{JSON.stringify(allNotes)}</span>
           </button>
           <div className={styles.status}>
             {status}
@@ -70,4 +73,13 @@ export function getSaveFilePath(at = Date.now()) {
   const date = `${when.getDate()}`.padStart(2, '0');
 
   return `notes_${year}_${month}_${date}.json`;
+}
+
+function copyToClipboard(id) {
+  const range = document.createRange();
+  range.selectNode(document.getElementById(id));
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(range);
+  document.execCommand('copy');
+  window.getSelection().removeAllRanges();
 }

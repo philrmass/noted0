@@ -25,11 +25,16 @@ export default function Menu({ close }) {
     setStatus('LOAD');
   };
 
-  const copy = () => {
+  const copy = async () => {
     const count = Object.keys(allNotes).length - 1;
+    const data = JSON.stringify(allNotes, null, 2);
 
-    copyToClipboard('notesData');
-    setStatus(`Copied ${count} notes to clipboard`);
+    try {
+      await navigator.clipboard.writeText(data);
+      setStatus(`Copied ${count} notes to clipboard`);
+    } catch (err) {
+      setStatus(`Could not write to clipboard: ${err.message}`);
+    }
   };
 
   return (

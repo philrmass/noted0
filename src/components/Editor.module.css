@@ -11,6 +11,7 @@
 }
 
 .note {
+  margin: 0 var(--size1);
   flex-shrink: 0;
   display: flex;
 }

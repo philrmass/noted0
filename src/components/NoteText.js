@@ -13,7 +13,7 @@ export default function NoteText({ id, text, setText }) {
   const isEditing = Boolean(setText);
   const shortPressMs = 200;
   const longPressMs = 500;
-  const moveMax = 40;
+  const moveMax = 20;
 
   const handleStart = (e) => {
     const ey = e.clientY ?? e.touches[0].clientY;

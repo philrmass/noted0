@@ -85,11 +85,10 @@ export default function reducer(state = defaultState, action) {
       };
     }
     case SET_NOTES:
-      console.warn('SET_NOTES', action.all);
-      //saveItem(allKey, action.all);
+      saveItem(allKey, action.all);
       return {
         ...state,
-        //all: action.all,
+        all: action.all,
       };
     case UPDATE_NOTE: {
       const params = {

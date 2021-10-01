@@ -108,7 +108,25 @@ export function importNotes(data) {
   return { notes, message };
 }
 
-export function importNoteTree(data, id) {
-  //??? implement
-  return {};
+export function importNoteTree(data, parentId) {
+  let ids = [parentId];
+  let notes = {};
+
+  while (ids.length > 0) {
+    const nextId = ids.shift();
+    const next = data[nextId];
+    const children = next.children.filter(id => data[id]?.id);
+    const note = {
+      id: next.id,
+      text: next.text,
+      color: next.color,
+      at: next.at,
+      children,
+    };
+
+    notes = { ...notes, [note.id]: note };
+    ids = [...ids, ...children];
+  }
+
+  return notes;
 }

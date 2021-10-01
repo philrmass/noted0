@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import cln from 'classnames';
 
 import { editNote } from '../redux/uiActions';
 import { updateNote } from '../redux/notesActions';
 import styles from './Editor.module.css';
 
+import BigButton from './BigButton';
 import Colors from './Colors';
 import NoteControls from './NoteControls';
 import NoteHandle from './NoteHandle';
 import NoteText from './NoteText';
 
-function Editor() {
+export default function Editor() {
   const [text, setText] = useState('');
   const [color, setColor] = useState('');
   const [showColor, setShowColor] = useState(false);
@@ -40,37 +40,18 @@ function Editor() {
 
   return (
     <main className={styles.main}>
-      <button
-        className={cln(styles.button, styles.color)}
-        onClick={() => setShowColor(true)}
-      >
-        <svg viewBox='0 0 25.5 8.5'>
-          <text x='0' y='8'>Color</text>
-        </svg>
-      </button>
+      <div className={styles.top}>
+        <BigButton text='Color' classes={styles.color} onClick={() => setShowColor(true)} />
+      </div>
       <div style={style} className={styles.note}>
         <NoteControls />
         <NoteText text={text} setText={setText} />
         <NoteHandle />
       </div>
-      <button
-        className={cln(styles.button, styles.cancel)}
-        onClick={() => dis(editNote(null))}
-      >
-        <svg viewBox='0 0 31 8.5'>
-          <text x='0' y='8'>Cancel</text>
-        </svg>
-      </button>
-      <button
-        className={cln(styles.button, styles.save)}
-        onClick={save}
-      >
-        <svg viewBox='0 0 21.6 8.5'>
-          <text x='0' y='8'>Save</text>
-        </svg>
-      </button>
+      <div className={styles.bottom}>
+        <BigButton text='Cancel' classes={styles.cancel} onClick={() => dis(editNote(null))} />
+        <BigButton text='Save' classes={styles.save} onClick={save} />
+      </div>
     </main>
   );
 }
-
-export default Editor;

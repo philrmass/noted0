@@ -6,6 +6,7 @@ import { importNotes } from '../utilities/notes';
 import { setNotes } from '../redux/notesActions';
 import styles from './Menu.module.css';
 
+import BigButton from './BigButton';
 import Dialog from './Dialog';
 
 export default function Menu({ isOpen, close }) {
@@ -45,44 +46,15 @@ export default function Menu({ isOpen, close }) {
 
   return (
     <Dialog isOpen={isOpen}>
-      <button className={styles.button} onClick={close}>
-        <svg viewBox='0 0 25.5 8.5'>
-          <text x='0' y='8'>Close</text>
-        </svg>
-      </button>
-      {/*
-    <div className={styles.background}>
-      <div className={styles.menu}>
-
-        <div className={styles.controls}>
-
-          <button className={styles.button} onClick={save}>
-            <svg viewBox='0 0 21.5 8.5'>
-              <text x='0' y='8'>Save</text>
-            </svg>
-          </button>
-
-          <button className={styles.button} onClick={load}>
-            <svg viewBox='0 0 23 8.5'>
-              <text x='0' y='8'>Load</text>
-            </svg>
-          </button>
-
-          <button className={styles.button} onClick={copy}>
-            <svg viewBox='0 0 24 10.5'>
-              <text x='0' y='8'>Copy</text>
-            </svg>
-          </button>
-
-          <div className={styles.status}>
-            {status}
-          </div>
-
+      <div className={styles.controls}>
+        <BigButton text='Save' onClick={save} />
+        <BigButton text='Load' onClick={load} />
+        <BigButton text='Copy' onClick={copy} />
+        <div className={styles.status}>
+          {status}
         </div>
-
       </div>
-    </div>
-      */}
+      <BigButton text='Close' onClick={close} />
     </Dialog>
   );
 }

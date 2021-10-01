@@ -16,18 +16,20 @@
   display: flex;
 }
 
-.button {
-  padding: var(--size2) 30%;
-  border-radius: var(--radiusLarge);
-  margin: var(--size2);
-  background: var(--button);
-  font-size: 10px;
-  user-select: none;
-  fill: var(--textButton);
+.top {
+  padding: var(--size2);
+  flex-grow: 1;
 }
 
 .color {
-  flex-grow: 3;
+  height: 100%;
+}
+
+.bottom {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  padding: var(--size2);
 }
 
 .cancel {
@@ -35,9 +37,5 @@
 }
 
 .save {
-  flex-grow: 3;
-}
-
-.button + .button {
-  margin-top: 0;
+  flex-grow: 1;
 }

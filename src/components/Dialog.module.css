@@ -12,6 +12,7 @@
 }
 
 .dialog {
+  max-width: 450px;
   flex-grow: 1;
   padding: var(--size2);
   border-radius: var(--radiusLarge);

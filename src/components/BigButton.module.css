@@ -1,0 +1,13 @@
+.button {
+  width: 100%;
+  padding: var(--size2) 30%;
+  border-radius: var(--radiusLarge);
+  background: var(--button);
+  font-size: 10px;
+  user-select: none;
+  fill: var(--textButton);
+}
+
+.button + .button {
+  margin-top: var(--size2);
+}

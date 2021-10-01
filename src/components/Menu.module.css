@@ -1,39 +1,5 @@
-.background {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: var(--size4);
-  background: #00000040;
-}
-
-.menu {
-  flex-grow: 1;
-  padding: var(--size2);
-  border-radius: var(--radiusLarge);
-  background: var(--menu);
-}
-
 .controls {
   margin-bottom: var(--size4);
-}
-
-.button {
-  width: 100%;
-  padding: var(--size2) 30%;
-  border-radius: var(--radiusLarge);
-  background: var(--button);
-  font-size: 10px;
-  user-select: none;
-  fill: var(--textButton);
-}
-
-.button + .button {
-  margin-top: var(--size2);
 }
 
 .status {

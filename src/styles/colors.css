@@ -1,10 +1,11 @@
 :root {
   --background: #989898;
   --button: #585858;
+  --dialog: #ffffff;
   --highlight: #ffffff;
-  --menu: #ffffff;
   --shade: #00000020;
   --shadeLight: #00000018;
+  --shadeDark: #00000060;
   --text: #202020;
   --textLight: #585858;
   --textButton: #fafafa;

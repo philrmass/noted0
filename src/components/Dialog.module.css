@@ -1,0 +1,19 @@
+.background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--size4);
+  background: var(--shadeDark);
+}
+
+.dialog {
+  flex-grow: 1;
+  padding: var(--size2);
+  border-radius: var(--radiusLarge);
+  background: var(--dialog);
+}

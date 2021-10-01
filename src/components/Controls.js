@@ -41,9 +41,7 @@ function Controls() {
         <Icon name='back' />
       </button>
       }
-      {isOpen &&
-        <Menu close={() => setIsOpen(false)} />
-      }
+      <Menu isOpen={isOpen} close={() => setIsOpen(false)} />
     </>
   );
 }

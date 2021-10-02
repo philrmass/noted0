@@ -20,13 +20,13 @@ export default function Notes() {
 
   useEffect(() => {
     if (scrollId) {
-      setTimeout(() => scrollToNote(scrollId), 0);
+      setTimeout(() => scrollToNote(scrollId, 'nearest'), 0);
     }
   }, [scrollId]);
 
   useEffect(() => {
     if (scrollTop) {
-      setTimeout(() => scrollToNote(parentId), 0);
+      setTimeout(() => scrollToNote(parentId, 'center'), 0);
     }
   }, [scrollTop]);
 
@@ -75,7 +75,7 @@ export default function Notes() {
   );
 }
 
-function scrollToNote(id) {
+function scrollToNote(id, block) {
   const element = document.getElementById(id);
-  element && element.scrollIntoView({ block: 'center' });
+  element && element.scrollIntoView({ block });
 }

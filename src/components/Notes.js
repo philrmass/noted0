@@ -39,7 +39,6 @@ export default function Notes() {
         <div className={styles.appName}>
           {buildLogo()}
           Noted
-          {buildLogo()}
         </div>
       );
     }

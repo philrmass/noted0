@@ -21,6 +21,7 @@
 }
 
 .opening {
-  transition: transform 500ms;
-  transform: scale(0.8);
+  transition: all 100ms;
+  transform: scale(1.2);
+  color: transparent;
 }

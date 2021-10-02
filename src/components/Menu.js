@@ -44,6 +44,11 @@ export default function Menu({ isOpen, close }) {
     }
   };
 
+  const handleClose = () => {
+    setStatus('');
+    close();
+  };
+
   return (
     <Dialog isOpen={isOpen}>
       <div className={styles.controls}>
@@ -54,7 +59,7 @@ export default function Menu({ isOpen, close }) {
           {status}
         </div>
       </div>
-      <BigButton text='Close' onClick={close} />
+      <BigButton text='Close' onClick={handleClose} />
     </Dialog>
   );
 }

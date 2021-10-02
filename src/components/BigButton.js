@@ -27,6 +27,8 @@ function getTextWidth(text) {
       return 24;
     case 'Load':
       return 23;
+    case 'Remove':
+      return 37.5;
     case 'Save':
       return 21.5;
     default:

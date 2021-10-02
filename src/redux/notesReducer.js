@@ -18,8 +18,8 @@ const lastSaveKey = 'notedLastSave';
 const defaultState = {
   all: loadItem(allKey, getNotesDefault()),
   lastColor: loadItem(lastColorKey, null),
-  removedNote: null,
-  removedParenId: null,
+  removedNotes: null,
+  removedParentId: null,
   saveDialogIsOpen: false,
 };
 
@@ -27,14 +27,14 @@ export default function reducer(state = defaultState, action) {
   switch (action.type) {
     case ADD_NOTE: {
       const note = getEmptyNote(action.id);
-      const all = addNote(state.all, note, action.parentId);
+      const all = addNotes(state.all, [note], action.parentId);
 
       saveItem(allKey, all);
       return {
         ...state,
         all,
-        removedNote: null,
-        removedParenId: null,
+        removedNotes: null,
+        removedParentId: null,
       };
     }
     case CLOSE_SAVE_DIALOG:
@@ -64,8 +64,10 @@ export default function reducer(state = defaultState, action) {
     case REMOVE_NOTE: {
       const parent = state.all[action.parentId];
       const children = parent.children.filter(id => id !== action.id);
-      const removedNote = state.all[action.id];
-      const remaining = removeProperty(action.id, state.all);
+      const removedIds = findAllChildIds(action.id, state.all);
+      const removedNotes = Object.values(state.all).filter(id => removedIds.includes(id));
+      const remaining = removedIds.reduce((obj, id) => removeProperty(id, obj), state.all);
+
       const all = {
         ...remaining,
         [parent.id]: {
@@ -78,19 +80,19 @@ export default function reducer(state = defaultState, action) {
       return {
         ...state,
         all,
-        removedNote,
-        removedParenId: action.parentId,
+        removedNotes,
+        removedParentId: action.parentId,
       };
     }
     case REVERT_NOTE: {
-      const all = addNote(state.all, state.removedNote, state.removedParenId);
+      const all = addNotes(state.all, state.removedNotes, state.removedParentId);
 
       saveItem(allKey, all);
       return {
         ...state,
         all,
         removedNote: null,
-        removedParenId: null,
+        removedParentId: null,
       };
     }
     case SET_NOTES:
@@ -122,9 +124,13 @@ export default function reducer(state = defaultState, action) {
   }
 }
 
-function addNote(all, note, parentId) {
+function addNotes(all, notes, parentId) {
   const parent = all[parentId];
-  const children = [...parent.children, note.id];
+  const children = [...parent.children, notes[0].id];
+  const notesObj = notes.reduce((obj, note) => ({
+    ...obj,
+    [note.id]: note,
+  }), {});
 
   return {
     ...all,
@@ -132,7 +138,7 @@ function addNote(all, note, parentId) {
       ...parent,
       children,
     },
-    [note.id]: note,
+    ...notesObj,
   };
 }
 
@@ -180,4 +186,10 @@ function checkSaveDialog() {
   saveItem(lastSaveKey, now);
 
   return inNewMonth;
+}
+
+function findAllChildIds(id, notes) {
+  const note = notes[id];
+  const children = note?.children ?? [];
+  return children.reduce((all, childId) => [...all, ...findAllChildIds(childId, notes)], [id]);
 }

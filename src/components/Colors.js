@@ -1,22 +1,29 @@
+import cln from 'classnames';
+
 import { getColors } from '../utilities/colors';
 import styles from './Colors.module.css';
 
 const colors = getColors();
 
-function Colors({ setColor, onClose }) {
+function Colors({ current, setColor, onClose }) {
+  const pickColor = (color) => {
+    setColor(color);
+    onClose();
+  };
+
   const buildColors = () => (
     colors.map((color) => {
+      const isCurrent = color === current;
+      const colorClasses = cln({
+        [styles.color]: true,
+        [styles.current]: isCurrent,
+      });
       const style = { background: color };
-
-      const pickColor = (color) => {
-        setColor(color);
-        onClose();
-      };
 
       return (
         <li
           key={color}
-          className={styles.color}
+          className={colorClasses}
           style={style}
           onClick={() => pickColor(color)}
         >

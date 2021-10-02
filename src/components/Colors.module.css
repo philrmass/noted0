@@ -22,6 +22,10 @@
   border-radius: var(--radius);
 }
 
+.current {
+  border: 5px solid var(--button);
+}
+
 .button {
   padding: var(--size2) 30%;
   border-radius: var(--radiusLarge);

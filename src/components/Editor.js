@@ -35,7 +35,7 @@ export default function Editor() {
   };
 
   if (showColor) {
-    return <Colors setColor={setColor} onClose={() => setShowColor(false)} />;
+    return <Colors current={color} setColor={setColor} onClose={() => setShowColor(false)} />;
   }
 
   return (

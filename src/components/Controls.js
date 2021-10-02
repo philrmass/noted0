@@ -8,6 +8,7 @@ import styles from './Controls.module.css';
 
 import Icon from './Icon';
 import Menu from './Menu';
+import SaveDialog from './SaveDialog';
 
 function Controls() {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,6 +43,7 @@ function Controls() {
       </button>
       }
       <Menu isOpen={isOpen} close={() => setIsOpen(false)} />
+      <SaveDialog />
     </>
   );
 }

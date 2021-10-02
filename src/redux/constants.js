@@ -1,4 +1,5 @@
 export const ADD_NOTE = 'ADD_NOTE';
+export const CLOSE_SAVE_DIALOG = 'CLOSE_SAVE_DIALOG';
 export const MOVE_NOTE = 'MOVE_NOTE';
 export const REMOVE_NOTE = 'REMOVE_NOTE';
 export const REVERT_NOTE = 'REVERT_NOTE';

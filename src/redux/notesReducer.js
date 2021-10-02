@@ -1,5 +1,6 @@
 import {
   ADD_NOTE,
+  CLOSE_SAVE_DIALOG,
   MOVE_NOTE,
   REMOVE_NOTE,
   REVERT_NOTE,
@@ -8,15 +9,18 @@ import {
 } from './constants';
 import { getEmptyNote, getNotesDefault } from '../utilities/notes';
 import { saveItem, loadItem } from '../utilities/storage';
+import { inSameMonth } from '../utilities/time';
 
 const allKey = 'notedAll';
 const lastColorKey = 'notedLastColor';
+const lastSaveKey = 'notedLastSave';
 
 const defaultState = {
   all: loadItem(allKey, getNotesDefault()),
   lastColor: loadItem(lastColorKey, null),
   removedNote: null,
   removedParenId: null,
+  saveDialogIsOpen: false,
 };
 
 export default function reducer(state = defaultState, action) {
@@ -33,6 +37,11 @@ export default function reducer(state = defaultState, action) {
         removedParenId: null,
       };
     }
+    case CLOSE_SAVE_DIALOG:
+      return {
+        ...state,
+        saveDialogIsOpen: false,
+      };
     case MOVE_NOTE: {
       const parent = state.all[action.parentId];
       const from = parent.children.findIndex(id => id === action.fromId);
@@ -97,6 +106,7 @@ export default function reducer(state = defaultState, action) {
       };
       const all = updateNote(state.all, action.id, params);
       const lastColor = action.color ?? state.lastColor;
+      const saveDialogIsOpen = checkSaveDialog();
 
       saveItem(allKey, all);
       saveItem(lastColorKey, lastColor);
@@ -104,6 +114,7 @@ export default function reducer(state = defaultState, action) {
         ...state,
         all,
         lastColor,
+        saveDialogIsOpen,
       };
     }
     default:
@@ -160,4 +171,13 @@ function move(list, from, to) {
   }
 
   return list;
+}
+
+function checkSaveDialog() {
+  const now = Date.now();
+  const lastSaveAt = Number(loadItem(lastSaveKey, now));
+  const inNewMonth = !inSameMonth(lastSaveAt, now);
+  saveItem(lastSaveKey, now);
+
+  return inNewMonth;
 }

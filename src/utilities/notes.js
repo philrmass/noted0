@@ -130,3 +130,12 @@ export function importNoteTree(data, parentId) {
 
   return notes;
 }
+
+export function getSaveFilePath(at = Date.now()) {
+  const when = new Date(at);
+  const year = when.getFullYear();
+  const month = `${when.getMonth() + 1}`.padStart(2, '0');
+  const date = `${when.getDate()}`.padStart(2, '0');
+
+  return `notes_${year}_${month}_${date}.json`;
+}

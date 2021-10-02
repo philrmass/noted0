@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import {
   ADD_NOTE,
+  CLOSE_SAVE_DIALOG,
   MOVE_NOTE,
   REMOVE_NOTE,
   REVERT_NOTE,
@@ -12,6 +13,10 @@ import {
 export function addNote(parentId) {
   const id = uuidv4();
   return { type: ADD_NOTE, id, parentId };
+}
+
+export function closeSaveDialog() {
+  return { type: CLOSE_SAVE_DIALOG };
 }
 
 export function moveNote(parentId, fromId, toId) {

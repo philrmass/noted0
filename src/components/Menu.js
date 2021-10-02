@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { saveData, loadData } from '../utilities/files';
-import { importNotes } from '../utilities/notes';
+import { importNotes, getSaveFilePath } from '../utilities/notes';
 import { setNotes } from '../redux/notesActions';
 import styles from './Menu.module.css';
 
@@ -57,13 +57,4 @@ export default function Menu({ isOpen, close }) {
       <BigButton text='Close' onClick={close} />
     </Dialog>
   );
-}
-
-export function getSaveFilePath(at = Date.now()) {
-  const when = new Date(at);
-  const year = when.getFullYear();
-  const month = `${when.getMonth() + 1}`.padStart(2, '0');
-  const date = `${when.getDate()}`.padStart(2, '0');
-
-  return `notes_${year}_${month}_${date}.json`;
 }

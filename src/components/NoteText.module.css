@@ -5,6 +5,7 @@
   user-select: none;
   white-space: pre-wrap;
   overflow: hidden;
+  transform: scale(1);
 }
 
 .textarea {
@@ -17,4 +18,9 @@
   font-size: 1em;
   overflow-y: scroll;
   resize: none;
+}
+
+.opening {
+  transition: transform 500ms;
+  transform: scale(0.8);
 }

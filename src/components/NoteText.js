@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import cln from 'classnames';
 
 import { editNote, selectNote } from '../redux/uiActions';
 import styles from './NoteText.module.css';
@@ -9,6 +10,7 @@ export default function NoteText({ id, text, setText }) {
   const [_, setTimer] = useState(null);
   const [y, setY] = useState(null);
   const [moveY, setMoveY] = useState(0);
+  const [isOpening, setIsOpening] = useState(false);
   const dis = useDispatch();
   const isEditing = Boolean(setText);
   const shortPressMs = 200;
@@ -25,7 +27,7 @@ export default function NoteText({ id, text, setText }) {
       if (timerId) {
         clearTimeout(timerId);
       }
-      return setTimeout(() => dis(editNote(id)), longPressMs);
+      return setTimeout(() => setIsOpening(true), longPressMs);
     });
   };
 
@@ -71,15 +73,21 @@ export default function NoteText({ id, text, setText }) {
     );
   }
 
+  const textStyles = cln({
+    [styles.text]: true,
+    [styles.opening]: isOpening,
+  });
+
   return (
     <div
-      className={styles.text}
+      className={textStyles}
       onTouchStart={handleStart}
       onTouchEnd={handleEnd}
       onTouchMove={handleMove}
       onMouseDown={handleStart}
       onMouseUp={handleEnd}
       onMouseMove={handleMove}
+      onTransitionEnd={() => dis(editNote(id))}
     >
       {text}
     </div>

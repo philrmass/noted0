@@ -2,8 +2,21 @@
   margin-bottom: var(--size6);
 }
 
-.parentSpacer {
-  height: var(--size6);
+.appName {
+  --logoSize: var(--size4);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--size1) 0;
+  color: var(--button);
+  font-size: var(--logoSize);
+}
+
+.logo {
+  width: var(--logoSize);
+  height: var(--logoSize);
+  margin-right: var(--size0);
 }
 
 .parent {

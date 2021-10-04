@@ -13,7 +13,6 @@ import Editor from './Editor';
 import Notes from './Notes';
 
 function App() {
-  /*
   const mainRef = useRef();
   const dis = useDispatch();
   const editingId = useSelector(state => state.ui.editingId);
@@ -33,14 +32,8 @@ function App() {
   if (editingId) {
     return <Editor />;
   }
-  */
 
   return (
-    <main>
-      HELLO
-      <div className={styles.version}>{`v${version}`}</div>
-    </main>
-    /*
     <main ref={mainRef} className={styles.main} onScroll={handleScroll}>
       <DndProvider backend={TouchBackend}>
         <Notes />
@@ -49,7 +42,6 @@ function App() {
       <Controls />
       <div className={styles.version}>{`v${version}`}</div>
     </main>
-    */
   );
 }
 

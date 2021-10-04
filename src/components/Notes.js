@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { clearScrollId } from '../redux/notesActions';
 import { editNote } from '../redux/uiActions';
 import styles from './Notes.module.css';
 
@@ -9,26 +10,24 @@ import Note from './Note';
 export default function Notes() {
   const dis = useDispatch();
   const allNotes = useSelector(state => state.notes.all);
+  const scrollId = useSelector(state => state.notes.scrollId);
   const parentIds = useSelector(state => state.ui.parentIds);
-  const scrollId = useSelector(state => state.ui.scrollId);
-  const scrollTop = useSelector(state => state.ui.scrollTop);
-  const parentId = parentIds[parentIds.length - 1] ?? 'root';
+  const parentId = parentIds.at(-1) ?? 'root';
   const parent = allNotes[parentId];
-  const showParent = parent?.text && parent?.color;
+  const showParent = parent?.text || parent?.color;
   const ids = parent?.children ?? [];
   const notes = ids.map((id) => allNotes[id]);
 
   useEffect(() => {
     if (scrollId) {
-      setTimeout(() => scrollToNote(scrollId, 'nearest'), 0);
+      const element = document.getElementById(scrollId);
+
+      if (element) {
+        element.scrollIntoView({ block: 'nearest' });
+        dis(clearScrollId());
+      }
     }
   }, [scrollId]);
-
-  useEffect(() => {
-    if (scrollTop) {
-      setTimeout(() => scrollToNote(parentId, 'center'), 0);
-    }
-  }, [scrollTop]);
 
   const background = parent?.color ?? '#ffffff';
   const parentStyle = { background };
@@ -73,9 +72,4 @@ export default function Notes() {
       ))}
     </ul>
   );
-}
-
-function scrollToNote(id, block) {
-  const element = document.getElementById(id);
-  element && element.scrollIntoView({ block });
 }

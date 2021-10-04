@@ -1,5 +1,6 @@
 import {
   ADD_NOTE,
+  CLEAR_SCROLL_ID,
   CLOSE_SAVE_DIALOG,
   MOVE_NOTE,
   REMOVE_NOTE,
@@ -21,6 +22,7 @@ const defaultState = {
   removedNotes: null,
   removedParentId: null,
   saveDialogIsOpen: false,
+  scrollId: null,
 };
 
 export default function reducer(state = defaultState, action) {
@@ -28,6 +30,7 @@ export default function reducer(state = defaultState, action) {
     case ADD_NOTE: {
       const note = getEmptyNote(action.id);
       const all = addNotes(state.all, [note], action.parentId);
+      const scrollId = note.id;
 
       saveItem(allKey, all);
       return {
@@ -35,8 +38,14 @@ export default function reducer(state = defaultState, action) {
         all,
         removedNotes: null,
         removedParentId: null,
+        scrollId,
       };
     }
+    case CLEAR_SCROLL_ID:
+      return {
+        ...state,
+        scrollId: null,
+      };
     case CLOSE_SAVE_DIALOG:
       return {
         ...state,

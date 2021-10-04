@@ -14,9 +14,9 @@ function Controls() {
   const [isOpen, setIsOpen] = useState(false);
   const dis = useDispatch();
   const parentIds = useSelector(state => state.ui.parentIds);
-  const parentId = parentIds[parentIds.length - 1] ?? 'root';
+  const parentId = parentIds.at(-1) ?? 'root';
   const removedNote = useSelector(state => state.notes.removedNote);
-  const isNotRoot = parentIds.length > 1;
+  const isNotRoot = parentIds.length > 0;
 
   const add = () => {
     const addAction = addNote(parentId);

@@ -20,7 +20,6 @@ const defaultState = {
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
-    /*
     case CLEAR_NOTE: {
       const canClear = state.parentIds.length > 0;
       const parentIds = canClear ? state.parentIds.slice(0, -1) : state.parentIds;
@@ -66,7 +65,6 @@ export default function reducer(state = defaultState, action) {
         parentScrolls,
       };
     }
-    */
     default:
       return state;
   }

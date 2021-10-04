@@ -38,6 +38,7 @@ function App() {
   return (
     <main>
       HELLO
+      <div className={styles.version}>{`v${version}`}</div>
     </main>
     /*
     <main ref={mainRef} className={styles.main} onScroll={handleScroll}>

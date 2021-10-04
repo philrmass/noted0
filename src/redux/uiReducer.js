@@ -12,8 +12,8 @@ const parentScrollsKey = 'notedScrolls';
 
 const defaultState = {
   editingId: null,
-  parentIds: [],//loadItem(parentIdsKey, []),
-  parentScrolls: [],//loadItem(parentScrollsKey, []),
+  parentIds: loadItem(parentIdsKey, []),
+  parentScrolls: loadItem(parentScrollsKey, []),
   scroll: null,
   scrollTarget: null,
 };
@@ -26,8 +26,8 @@ export default function reducer(state = defaultState, action) {
       const parentScrolls = canClear ? state.parentScrolls.slice(0, -1) : state.parentScrolls;
       const scrollTarget = canClear ? state.parentScrolls.at(-1) : null;
 
-      //saveItem(parentIdsKey, parentIds);
-      //saveItem(parentScrollsKey, parentScrolls);
+      saveItem(parentIdsKey, parentIds);
+      saveItem(parentScrollsKey, parentScrolls);
       return {
         ...state,
         parentIds,
@@ -57,8 +57,8 @@ export default function reducer(state = defaultState, action) {
       const parentIds = [...state.parentIds, action.id];
       const parentScrolls = [...state.parentScrolls, scroll];
 
-      //saveItem(parentIdsKey, parentIds);
-      //saveItem(parentScrollsKey, parentScrolls);
+      saveItem(parentIdsKey, parentIds);
+      saveItem(parentScrollsKey, parentScrolls);
       return {
         ...state,
         parentIds,

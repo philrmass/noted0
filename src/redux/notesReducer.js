@@ -17,8 +17,8 @@ const lastColorKey = 'notedLastColor';
 const lastSaveKey = 'notedLastSave';
 
 const defaultState = {
-  all: getNotesDefault(), //loadItem(allKey, getNotesDefault()),
-  lastColor: null, //loadItem(lastColorKey, null),
+  all: loadItem(allKey, getNotesDefault()),
+  lastColor: loadItem(lastColorKey, null),
   removedNotes: null,
   removedParentId: null,
   saveDialogIsOpen: false,
@@ -32,7 +32,7 @@ export default function reducer(state = defaultState, action) {
       const all = addNotes(state.all, [note], action.parentId);
       const scrollId = note.id;
 
-      //saveItem(allKey, all);
+      saveItem(allKey, all);
       return {
         ...state,
         all,
@@ -64,7 +64,7 @@ export default function reducer(state = defaultState, action) {
         },
       };
 
-      //saveItem(allKey, all);
+      saveItem(allKey, all);
       return {
         ...state,
         all,
@@ -85,7 +85,7 @@ export default function reducer(state = defaultState, action) {
         },
       };
 
-      //saveItem(allKey, all);
+      saveItem(allKey, all);
       return {
         ...state,
         all,
@@ -96,7 +96,7 @@ export default function reducer(state = defaultState, action) {
     case REVERT_NOTE: {
       const all = addNotes(state.all, state.removedNotes, state.removedParentId);
 
-      //saveItem(allKey, all);
+      saveItem(allKey, all);
       return {
         ...state,
         all,
@@ -105,7 +105,7 @@ export default function reducer(state = defaultState, action) {
       };
     }
     case SET_NOTES:
-      //saveItem(allKey, action.all);
+      saveItem(allKey, action.all);
       return {
         ...state,
         all: action.all,
@@ -119,8 +119,8 @@ export default function reducer(state = defaultState, action) {
       const lastColor = action.color ?? state.lastColor;
       const saveDialogIsOpen = checkSaveDialog();
 
-      //saveItem(allKey, all);
-      //saveItem(lastColorKey, lastColor);
+      saveItem(allKey, all);
+      saveItem(lastColorKey, lastColor);
       return {
         ...state,
         all,

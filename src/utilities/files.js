@@ -32,3 +32,9 @@ export function loadData() {
     input.click();
   });
 }
+
+export async function copyData(data) {
+  const text = JSON.stringify(data, null, 2);
+
+  await navigator.clipboard.writeText(text);
+}

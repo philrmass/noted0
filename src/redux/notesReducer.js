@@ -74,7 +74,7 @@ export default function reducer(state = defaultState, action) {
       const parent = state.all[action.parentId];
       const children = parent.children.filter(id => id !== action.id);
       const removedIds = findAllChildIds(action.id, state.all);
-      const removedNotes = Object.values(state.all).filter(id => removedIds.includes(id));
+      const removedNotes = Object.values(state.all).filter(note => removedIds.includes(note.id));
       const remaining = removedIds.reduce((obj, id) => removeProperty(id, obj), state.all);
 
       const all = {
@@ -100,7 +100,7 @@ export default function reducer(state = defaultState, action) {
       return {
         ...state,
         all,
-        removedNote: null,
+        removedNotes: null,
         removedParentId: null,
       };
     }

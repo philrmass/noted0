@@ -5,6 +5,7 @@ import { TouchBackend } from 'react-dnd-touch-backend';
 
 import version from '../version';
 import { clearScrollTarget, recordScroll } from '../redux/uiActions';
+import { getIconSource } from './Icon.js';
 import styles from './App.module.css';
 
 import Controls from './Controls';
@@ -41,6 +42,7 @@ function App() {
       </DndProvider>
       <Controls />
       <div className={styles.version}>{`v${version}`}</div>
+      {getIconSource()}
     </main>
   );
 }

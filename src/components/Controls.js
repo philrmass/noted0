@@ -15,7 +15,7 @@ function Controls() {
   const dis = useDispatch();
   const parentIds = useSelector(state => state.ui.parentIds);
   const parentId = parentIds.at(-1) ?? 'root';
-  const removedNote = useSelector(state => state.notes.removedNote);
+  const removedNotes = useSelector(state => state.notes.removedNotes);
   const isNotRoot = parentIds.length > 0;
 
   const add = () => {
@@ -32,7 +32,7 @@ function Controls() {
       <button className={cln(styles.button, styles.add)} onClick={() => add()}>
         <Icon name='plus' />
       </button>
-      {removedNote &&
+      {removedNotes &&
       <button className={cln(styles.button, styles.revert)} onClick={() => dis(revertNote())}>
         <Icon name='revert' />
       </button>
